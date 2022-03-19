@@ -8,13 +8,13 @@ function App() {
   return (
     <div>
       <h1>hello friends!</h1>
-
-      <Routes>
+      <ResultsPage />
+      {/* <Routes>
         <Route path= "/home" element= { <Home />}>
-          <Route path="/home/results" element={<Results />} />
+          <Route path="/home/results" element={<ResultsPage />} />
           <Route path="/home/savedHaikus" element={<SavedHaikus />} />
         </Route>
-      </Routes>
+      </Routes> */}
     </div>
   );
 }
