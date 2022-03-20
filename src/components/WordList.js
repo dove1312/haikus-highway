@@ -25,13 +25,25 @@ const WordList = (props) => {
         wordListApiCall(chosenWord, setWordList)
     }, [chosenWord])
 
+    const handleClick = (wordParam, syllableParam) => {
+        props.handleSyllables(syllableParam);
+        props.handleHaikuWords(wordParam);
+        setChosenWord(wordParam);
+    }
+
 
     return (
         <>
             <h3>I'm the words!</h3>
             {
                 wordList[0]
-                    ? console.log(wordList)
+                    ? 
+                        wordList.map((word) => {
+                            console.log(word)
+                            return (
+                                <button onClick={ function() { handleClick(word.word, word.numSyllables) } } >{ word.word }</button>
+                            )
+                        }) 
                     : null
             }
         </>
