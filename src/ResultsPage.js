@@ -4,75 +4,93 @@ import {useState, useEffect} from 'react';
 
 const ResultsPage=()=> {
 
-     const [haikuLines, setHaikuLines]= useState([
-          [
-               {
-                    word: "thunder",
-                    syllables: 4
-               },
-               {
-                    word: "flight",
-                    syllables: 1
-               }
-          ],
-          [
-               {
-                    word: "candy",
-                    syllables: 2
-               },
-               {
-                    word: "doggy",
-                    syllables: 2
-               },
-               {
-                    word: "lightning",
-                    syllables: 3
-               }
-          ],
-          [
-               {
-                    word: "superstar",
-                    syllables: 2
-               },
-               {
-                    word: "goal",
-                    syllables: 2
-               },
-               {
-                    word: "celebrate",
-                    syllables: 1
-               }
+     // const [haikuLines, setHaikuLines]= useState([
+     //      [
+     //           {
+     //                word: "thunder",
+     //                syllables: 4
+     //           },
+     //           {
+     //                word: "flight",
+     //                syllables: 1
+     //           }
+     //      ],
+     //      [
+     //           {
+     //                word: "candy",
+     //                syllables: 2
+     //           },
+     //           {
+     //                word: "doggy",
+     //                syllables: 2
+     //           },
+     //           {
+     //                word: "lightning",
+     //                syllables: 2
+     //           }
+     //      ],
+     //      [
+     //           // {
+     //           //      word: "superstar",
+     //           //      syllables: 2
+     //           // },
+     //           // {
+     //           //      word: "goal",
+     //           //      syllables: 2
+     //           // },
+     //           // {
+     //           //      word: "celebrate",
+     //           //      syllables: 1
+     //           // }
 
-          ]
-     ])
+     //      ]
+     // ])
 
-     const [currentSyllables, setCurrentSyllables]= useState(0);
+     const [haikuLines, setHaikuLines] = useState([ ["cat"], ["dog"], ["anotherPet"]]);
+
+     const [currentSyllables, setCurrentSyllables]= useState(6);
      //allowed syllables will be used to display the # of syllables left on the side for user help 
      const [allowedSyllables, setAllowedSyllables] = useState(17);
 
+     
+
+// useEffect(()=>{
+//      let sum = 0;
+//      haikuLines.forEach((array) => {
+          
+//           // let totalSum = 0;
+//           for (let i = 0; i < array.length; i++) {
+//                const syllables = array[i].syllables;
+//                sum += syllables
+//                // console.log(syllables, sum);
+//           }
+          
+//           setCurrentSyllables(currentSyllables + sum);
+          
+//      })
+
+//      // // console.log(currentSyllables);
+//      // setAllowedSyllables(allowedSyllables - currentSyllables);
+//      // console.log(currentSyllables);
+// },[haikuLines]);
+
+
+     // const userWord = "cat";
+
 useEffect(()=>{
-     let sum = 0;
-     haikuLines.forEach((array) => {
-          
-          // let totalSum = 0;
-          for (let i = 0; i < array.length; i++) {
-               const syllables = array[i].syllables;
-               sum += syllables
-               // console.log(syllables, sum);
+     const whichLine = (wordParam)=> {
+     if (currentSyllables < 5){
+          haikuLines[0].push(wordParam);
+     } else if(currentSyllables < 12 && currentSyllables > 5) {
+          haikuLines[1].push(wordParam);
+     } else if (currentSyllables > 12){
+          haikuLines[2].push(wordParam);
+     }
+}
+whichLine("kitty");
+},[currentSyllables]);
 
-               //this console logs first syllable in array, then with 2nd number added, then with 3rd number added - then restarts for next array 
-               
-               //so need to take the value from here, and pull it outside the for loop 
-          }
-          
-          setCurrentSyllables(currentSyllables + sum);
-          
-     })
 
-     // // console.log(currentSyllables);
-     // setAllowedSyllables(allowedSyllables - currentSyllables);
-     // console.log(currentSyllables);
-},[haikuLines]);
 
 //as currentSyllables updates, need to have setAllowedSyllables update accordingly (17 - current syllables)
 useEffect(()=> {
