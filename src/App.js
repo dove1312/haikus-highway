@@ -8,13 +8,13 @@ import SavedHaikus from "./components/SavedHaikus";
 function App() {
   return (
     <div>
+      {/* insert nav here */}
       <h1>hello friends!</h1>
 
       <Routes>
-        {<Route path= "/home" element= { <Home />}>}
-          <Route path="/home/results" element={<ResultsPage />} />
-          <Route path="/home/savedHaikus" element={<SavedHaikus />} />
-        {</Route>}
+        <Route path ="/" element= { <Home />}/>
+        <Route path="/results" element={<ResultsPage />} />
+        <Route path="/haikus" element={<SavedHaikus />} />
       </Routes>
     </div>
   );
