@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import WordGenerator from "./WordGenerator";
 
 const ResultsPage=()=> {
-     // const { userWord } = useParams();
-     const userWord = "cat"
+     const { userWord } = useParams();
+     // const userWord = "cat"
 
      const [currentHaiku, setCurrentHaiku] = useState([]);
 
