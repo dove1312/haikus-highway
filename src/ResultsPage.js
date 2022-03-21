@@ -26,7 +26,7 @@ const ResultsPage=()=> {
                },
                {
                     word: "lightning",
-                    syllables: 2
+                    syllables: 3
                }
           ],
           [
@@ -40,14 +40,14 @@ const ResultsPage=()=> {
                },
                {
                     word: "celebrate",
-                    syllables: 4
+                    syllables: 1
                }
 
           ]
      ])
-//will return 5, 6, 14//
 
      const [currentSyllables, setCurrentSyllables]= useState(0);
+     //allowed syllables will be used to display the # of syllables left on the side for user help 
      const [allowedSyllables, setAllowedSyllables] = useState(17);
 
 useEffect(()=>{
@@ -58,7 +58,7 @@ useEffect(()=>{
           for (let i = 0; i < array.length; i++) {
                const syllables = array[i].syllables;
                sum += syllables
-               console.log(syllables, sum);
+               // console.log(syllables, sum);
 
                //this console logs first syllable in array, then with 2nd number added, then with 3rd number added - then restarts for next array 
                
@@ -66,13 +66,22 @@ useEffect(()=>{
           }
           
           setCurrentSyllables(currentSyllables + sum);
+          
      })
 
+     // // console.log(currentSyllables);
+     // setAllowedSyllables(allowedSyllables - currentSyllables);
      // console.log(currentSyllables);
-     setAllowedSyllables(allowedSyllables - currentSyllables);
-     
-//need to figure out dependency array- it is updating to just the total of the last array on page load, but when you change something and save again, it updates to add all 3 together - so dependency array needs to be defined so it re-renders     
 },[haikuLines]);
+
+//as currentSyllables updates, need to have setAllowedSyllables update accordingly (17 - current syllables)
+useEffect(()=> {
+     setAllowedSyllables(allowedSyllables - currentSyllables);
+     if(allowedSyllables === 0){
+          console.log('complete!')
+     }
+},[currentSyllables]);
+
 
 
 
@@ -92,65 +101,13 @@ useEffect(()=>{
 //      else if (currentSyllables > 12 && currentSyllables < 17){
 //           console.log('line 3 please');
 //      } else if (currentSyllables == 17) {
-//           console.log('complete!')
+//           console.log('done-zo')
 //      } else {
 //           console.log('too many syllables');
 //      }
 // }
 
 // calculateSyllables();
-
-
-
-     // console.log(currentSyllables);
-     // const loop1 = () => {
-     //      const line1 = arrays[0];
-     //      let sum1 = 0;
-     //      for (let i = 0; i < line1.length; i++) {
-     //           const syllables = line1[i].syllables;
-     //           sum1 += syllables
-     //      }
-     //      console.log(sum1);
-     //      setCurrentSyllables(setCurrentSyllables.push(sum1));
-     // }
-
-     // loop1();
-
-     // const loop2 = () => {
-     //      const line2 = arrays[1];
-     //      let sum2 = 0;
-     //      for (let i = 0; i < line2.length; i++) {
-
-     //           const syllables = line2[i].syllables;
-     //           sum2 += syllables
-     //      }
-     //      console.log(sum2);
-     //      setCurrentSyllables(currentSyllables.push(sum2));
-     //      //what if instead we setCurrentSyllables with the sum2
-     //      //THEN we use setAllowedSyllables to (allowed syllables - sum2)
-     //      //if statement: if allowed syllables < sum, throw error
-     // }
-
-     // loop2();
-
-     // const loop3 = () => {
-     //      const line3 = arrays[2];
-     //      let sum3 = 0;
-     //      for (let i = 0; i < line3.length; i++) {
-
-     //           const syllables = line3[i].syllables;
-     //           sum3 += syllables
-     //      }
-     //      console.log(sum3);
-     //      setCurrentSyllables(currentSyllables.push(sum3));
-     // }
-
-     // loop3();
-
-     // console.log(currentSyllables);
-
-
-
 
 
 
