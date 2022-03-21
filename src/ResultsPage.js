@@ -1,4 +1,5 @@
 //ResultsPage.js
+import WordGenerator from './WordGenerator';
 import {useState, useEffect} from 'react';
 
 const ResultsPage=()=> {
@@ -21,7 +22,7 @@ const ResultsPage=()=> {
                },
                {
                     word: "doggy",
-                    syllables: 1
+                    syllables: 2
                },
                {
                     word: "lightning",
@@ -35,7 +36,7 @@ const ResultsPage=()=> {
                },
                {
                     word: "goal",
-                    syllables: 4
+                    syllables: 2
                },
                {
                     word: "celebrate",
@@ -47,58 +48,57 @@ const ResultsPage=()=> {
 //will return 5, 6, 14//
 
      const [currentSyllables, setCurrentSyllables]= useState(0);
-     // const [allowedSyllables, setAllowedSyllables] = useState(17);
+     const [allowedSyllables, setAllowedSyllables] = useState(17);
 
 useEffect(()=>{
+     let sum = 0;
      haikuLines.forEach((array) => {
-          let sum = 0;
-          let totalSum = 0;
+          
+          // let totalSum = 0;
           for (let i = 0; i < array.length; i++) {
                const syllables = array[i].syllables;
                sum += syllables
+               console.log(syllables, sum);
+
                //this console logs first syllable in array, then with 2nd number added, then with 3rd number added - then restarts for next array 
-               // console.log(sum);
                
                //so need to take the value from here, and pull it outside the for loop 
           }
           
           setCurrentSyllables(currentSyllables + sum);
-          
-          // //right now, just the final round of syllables in array 3 is being added into currentSyllables- need to push EACH item 
-          // setCurrentSyllables(currentSyllables + sum);
-          // console.log(currentSyllables);
-          
-          
      })
+
+     // console.log(currentSyllables);
+     setAllowedSyllables(allowedSyllables - currentSyllables);
      
 //need to figure out dependency array- it is updating to just the total of the last array on page load, but when you change something and save again, it updates to add all 3 together - so dependency array needs to be defined so it re-renders     
 },[haikuLines]);
 
 
 
-const calculateSyllables = ()=>{
-     if (currentSyllables < 5){
-          console.log('line 1 please');
-     }
-     else if(currentSyllables == 5){
-          console.log('line 1 complete');
-     }
-     else if(currentSyllables > 5 && currentSyllables < 12){
-          console.log('line 2 please');
-     }
-     else if (currentSyllables == 12){
-          console.log('line 2 complete');
-     }
-     else if (currentSyllables > 12 && currentSyllables < 17){
-          console.log('line 3 please');
-     } else if (currentSyllables == 17) {
-          console.log('complete!')
-     } else {
-          console.log('too many syllables');
-     }
-}
+// const calculateSyllables = ()=>{
+//      if (currentSyllables < 5){
+//           console.log('line 1 please');
+//      }
+//      else if(currentSyllables == 5){
+//           console.log('line 1 complete');
+//      }
+//      else if(currentSyllables > 5 && currentSyllables < 12){
+//           console.log('line 2 please');
+//      }
+//      else if (currentSyllables == 12){
+//           console.log('line 2 complete');
+//      }
+//      else if (currentSyllables > 12 && currentSyllables < 17){
+//           console.log('line 3 please');
+//      } else if (currentSyllables == 17) {
+//           console.log('complete!')
+//      } else {
+//           console.log('too many syllables');
+//      }
+// }
 
-calculateSyllables();
+// calculateSyllables();
 
 
 
@@ -155,7 +155,9 @@ calculateSyllables();
 
 
      return(
+          <>
           <h2>Here are your results</h2>
+          </>
      )
 }
 
