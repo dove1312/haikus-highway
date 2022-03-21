@@ -18,6 +18,7 @@ const WordList = (props) => {
     // once we've received the initial word from the user set chosen word manually ONCE:
     useEffect(() => {
         setChosenWord(initialWord)
+        props.handleHaikuWords(initialWord);
     }, [initialWord])
 
     // call API for each chosen word:
@@ -25,10 +26,12 @@ const WordList = (props) => {
         wordListApiCall(chosenWord, setWordList)
     }, [chosenWord])
 
+    // handle click on each word:
     const handleClick = (wordParam, syllableParam) => {
         props.handleSyllables(syllableParam);
         props.handleHaikuWords(wordParam);
         setChosenWord(wordParam);
+        console.log(wordParam, syllableParam)
     }
 
 
@@ -39,12 +42,17 @@ const WordList = (props) => {
                 wordList[0]
                     ? 
                         wordList.map((word) => {
-                            console.log(word)
+                            // console.log(word)
                             return (
-                                <button onClick={ function() { handleClick(word.word, word.numSyllables) } } >{ word.word }</button>
+                                <li key={word.score}>
+                                    <button onClick={function () { handleClick(word.word, word.numSyllables) }} >{word.word}</button>
+                                </li>
                             )
                         }) 
                     : null
+            }
+            {
+                console.log(props.currentHaiku)
             }
         </>
     )
