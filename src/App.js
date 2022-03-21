@@ -11,17 +11,10 @@ function App() {
       <h1>hello friends!</h1>
 
       <Routes>
-<<<<<<< HEAD
-        {<Route path="/home" element={<Home />}>}
-          <Route path="/home/results" element={<ResultsPage />} />
-          <Route path="/home/savedHaikus" element={<SavedHaikus />} />
-          {</Route>}
-=======
         <Route path= "/home" element= { <Home />}>
           <Route path="/home/results" element={<ResultsPage />} />
           <Route path="/home/savedHaikus" element={<SavedHaikus />} />
-         </Route>
->>>>>>> 35bf67520092266228d9c93c865d031b0bf57d74
+        </Route>
       </Routes>
     </div>
   );
