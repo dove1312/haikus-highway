@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import wordListApiCall from "./wordListApiCall";
+import axios from "axios";
 
 
 const WordList = (props) => {
     //set during OnClick event and use this to send next API call:
     const [chosenWord, setChosenWord] = useState("");
     const [wordList, setWordList] = useState([]);
+    const [filteredWordList, setFilteredWordList] = useState([])
     const [initialWord, setInitialWord] = useState("");
+
+    const regex = /^[a-zA-Z]+$/;
+
+    // TEMPORARY UNTIL CAN BE RECEIVED VIA PROPS:
+    const allowedSyllables = 1;
 
     // establish initial word from user word handed down via props:
     if (props.initialWord) {
@@ -18,13 +25,41 @@ const WordList = (props) => {
     // once we've received the initial word from the user set chosen word manually ONCE:
     useEffect(() => {
         setChosenWord(initialWord)
+        // manually push first word to haiku
         props.handleHaikuWords(initialWord);
+        axios({
+            url: "https://api.datamuse.com/words",
+            params: {
+                sp: initialWord,
+                md: "s"
+            }
+        }).then((returnedData) => {
+            // manually push first word syllables to 
+            props.handleSyllables(returnedData.data[0].numSyllables)
+        })
     }, [initialWord])
-
     // call API for each chosen word:
     useEffect(() => {
         wordListApiCall(chosenWord, setWordList)
     }, [chosenWord])
+    // filter returnedWordList:
+    useEffect(() => {
+        const filteredForSyllables = wordList.filter((word) => {
+            return word.numSyllables <= allowedSyllables && word.word.match(regex)
+        })
+        if (filteredForSyllables.length <= 20) {
+            setFilteredWordList(filteredForSyllables)
+        } else {
+            let shuffledWords = [];
+            while (shuffledWords.length <= 19) {
+                const random = filteredForSyllables[Math.floor(Math.random() * filteredForSyllables.length)]
+                if (!shuffledWords.includes(random)) {
+                    shuffledWords.push(random)
+                }
+            }
+            setFilteredWordList(shuffledWords)
+        }
+    }, [wordList])
 
     // handle click on each word:
     const handleClick = (wordParam, syllableParam) => {
@@ -39,9 +74,9 @@ const WordList = (props) => {
         <>
             <h3>I'm the words!</h3>
             {
-                wordList[0]
+                filteredWordList[0]
                     ? 
-                        wordList.map((word) => {
+                        filteredWordList.map((word) => {
                             // console.log(word)
                             return (
                                 <li key={word.score}>

@@ -4,7 +4,7 @@ import DisplayHaiku from "./DisplayHaiku";
 
 const WordGenerator = (props) => {
 
-    const [currentHaiku, setCurrentHaiku] = useState([]);
+    const [currentHaiku, setCurrentHaiku] = useState([ [], [], [] ]);
 
     
     // to be replaced with a real function:
