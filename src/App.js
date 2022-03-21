@@ -11,10 +11,10 @@ function App() {
       <h1>hello friends!</h1>
 
       <Routes>
-        {/* <Route path= "/home" element= { <Home />}> */}
+        {<Route path= "/home" element= { <Home />}>}
           <Route path="/home/results" element={<ResultsPage />} />
           <Route path="/home/savedHaikus" element={<SavedHaikus />} />
-        {/* </Route> */}
+        {</Route>}
       </Routes>
     </div>
   );
