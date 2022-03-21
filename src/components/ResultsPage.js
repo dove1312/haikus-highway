@@ -1,8 +1,14 @@
 //ResultsPage.js
+import DisplayHaiku from "./DisplayHaiku";
+import WordGenerator from "./WordGenerator";
 
 const ResultsPage=()=> {
      return(
-          <h2>Here are your results</h2>
+          <section className="resultsPage">
+               <h2>Here are your results</h2>
+               <DisplayHaiku />
+               <WordGenerator />
+          </section>
      )
 }
 
