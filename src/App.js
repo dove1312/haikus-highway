@@ -12,7 +12,7 @@ function App() {
       <h1>hello friends!</h1>
 
       <Routes>
-        <Route path ="/" element= { <Home />}/>
+        {/* <Route path ="/" element= { <Home />}/> */}
         <Route path="/results" element={<ResultsPage />} />
         <Route path="/haikus" element={<SavedHaikus />} />
       </Routes>
