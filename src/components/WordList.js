@@ -88,14 +88,7 @@ const WordList = (props) => {
                     : null
             }
             {
-                props.allowedSyllables
-                    ? null
-                    : <div className = "buttonContainer" >
-                        <button>Save Haiku</button>
-                    </div>
-            }
-            {
-                console.log(props.currentHaiku)
+                
             }
         </>
     )
