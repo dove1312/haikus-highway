@@ -35,7 +35,7 @@ const WordList = (props) => {
         props.handleHaikuWords(wordParam);
         setChosenWord(wordParam);
         console.log(wordParam, syllableParam)
-        props.allowedSyllables(syllableParam);
+        // props.allowedSyllables(syllableParam);
     }
 
 

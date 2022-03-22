@@ -3,13 +3,15 @@ import {Link, Route, Routes} from 'react-router-dom';
 //may also need to add in Outlet as we progress
 
 import ResultsPage from './components/ResultsPage';
-import SavedHaikus from "./components/SavedHaikus"
+import SavedHaikus from "./components/SavedHaikus";
 
 function App() {
   return (
     <div>
       <h1>hello friends!</h1>
 
+
+      <ResultsPage />
       <Routes>
         {/* just commenting out the HOME route until the Home component is made! */}
         {/* <Route path="/" element={<Home />}/> */}

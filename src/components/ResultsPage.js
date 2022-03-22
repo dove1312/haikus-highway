@@ -5,7 +5,7 @@ import WordGenerator from "./WordGenerator";
 
 const ResultsPage=()=> {
      const { userWord } = useParams();
-     console.log(userWord)
+     // console.log(userWord)
 
      return(
           <section className="resultsPage">

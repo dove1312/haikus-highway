@@ -6,9 +6,7 @@ const WordGenerator = (props) => {
     //props right now is JUST the initial word
     // console.log(props);
 
-    // const [currentHaiku, setCurrentHaiku] = useState([ ["cat"], ["dog"], ["anotherPet"] ]);
     const [currentHaiku, setCurrentHaiku] = useState([[], [], []]);
-    // const [currentHaiku, setCurrentHaiku] = useState([["life"], [], []]);
 
     const [currentSyllables, setCurrentSyllables] = useState(0);
     //allowed syllables will be used to display the # of syllables left on the side for user help 
@@ -18,7 +16,8 @@ const WordGenerator = (props) => {
     //once currentSyllables is being tracked, figure out which line to push the incoming word to 
 
     const whichLine = (wordParam) => {
-        console.log(wordParam);
+        // console.log(wordParam);
+        console.log('whichLine rendered')
         if (currentSyllables < 5) {
             let placeholder = currentHaiku;
             placeholder[0].push(wordParam);
@@ -34,45 +33,49 @@ const WordGenerator = (props) => {
         } else {
             console.log('too many syllables');
         }
-        // console.log(currentHaiku);
+        console.log(currentHaiku);
 
     }
 
     const trackingSyllableCount = (numOfSyllables) => {
-        // console.log(numOfSyllables);
+        console.log('trackingSyllableCount rendered');
         setCurrentSyllables(currentSyllables + numOfSyllables);
+        console.log(currentSyllables);
+        //can we do a state setting here for allowed syllables? if current syllables is being tracked at this point? OR can we put it up inside whichLine
         
     }
 
-    const syllablesPerLine = () => {
-        //this works, but need to know how many syllables allowed PER line for .filter method
-        // setAllowedSyllables(allowedSyllables - numOfSyllables);
-        if(currentSyllables <= 5){
-            setAllowedSyllables(5);
-            console.log(allowedSyllables);
-        } else if(currentSyllables > 5 && currentSyllables <=12){
-            setAllowedSyllables(7); 
-            console.log(allowedSyllables);
-        }else if (currentSyllables > 12 && currentSyllables <=17){
-            setAllowedSyllables(5);
-            console.log(allowedSyllables);
-        } else {
-            console.log('too many!');
-        }         
-    }
-    syllablesPerLine();
+    // const syllablesPerLine = () => {
+    //     //this works, but need to know how many syllables allowed PER line for .filter method
+    //     // setAllowedSyllables(allowedSyllables - numOfSyllables);
+    //     if(currentSyllables <= 5){
+    //         setAllowedSyllables(5);
+    //         console.log(allowedSyllables);
+    //     } else if(currentSyllables > 5 && currentSyllables <=12){
+    //         setAllowedSyllables(7); 
+    //         console.log(allowedSyllables);
+    //     }else if (currentSyllables > 12 && currentSyllables <=17){
+    //         setAllowedSyllables(5);
+    //         console.log(allowedSyllables);
+    //     } else {
+    //         console.log('too many!');
+    //     }         
+    // }
+    // syllablesPerLine();
 
-    const howManyLeft = (numOfSyllables)=> {
-        if (currentSyllables <= 5) {
-            setAllowedSyllables(allowedSyllables - numOfSyllables);
-        } else if (currentSyllables > 5 && currentSyllables <= 12) {
-            setAllowedSyllables(allowedSyllables - numOfSyllables);
-        } else if (currentSyllables > 12 && currentSyllables <= 17) {
-            console.log(allowedSyllables); setAllowedSyllables(allowedSyllables - numOfSyllables);
-        } else {
-            console.log('too many!');
-        }
-    }
+    // const howManyLeft = (numOfSyllables)=> {
+    //     if (currentSyllables <= 5) {
+    //         setAllowedSyllables(allowedSyllables - numOfSyllables);
+    //     } else if (currentSyllables > 5 && currentSyllables <= 12) {
+    //         setAllowedSyllables(allowedSyllables - numOfSyllables);
+    //     } else if (currentSyllables > 12 && currentSyllables <= 17) {
+    //         console.log(allowedSyllables); setAllowedSyllables(allowedSyllables - numOfSyllables);
+    //     } else {
+    //         console.log('too many!');
+    //     }
+    // }
+
+    
 
     return (
         <div className="wordBox">
@@ -83,7 +86,7 @@ const WordGenerator = (props) => {
                 initialWord={ props.initialWord } 
                 handleSyllables={ trackingSyllableCount } 
                 handleHaikuWords={ whichLine } 
-                allowedSyllables = {howManyLeft}
+                // allowedSyllables = {howManyLeft}
             />
         </div>
     )
