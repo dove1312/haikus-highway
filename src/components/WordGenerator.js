@@ -1,6 +1,7 @@
 import { useState , useEffect } from "react";
 import WordList from "./WordList";
 import DisplayHaiku from "./DisplayHaiku";
+import SaveYourHaiku from "./SaveYourHaiku";
 
 const WordGenerator = (props) => {
 
@@ -54,7 +55,6 @@ const WordGenerator = (props) => {
         }
         // console.log(`allowed syllables is ${allowedSyllables}`);
     }, [currentSyllables]);
-    
 
     
 
@@ -62,6 +62,7 @@ const WordGenerator = (props) => {
         <div className="wordBox">
             <h2>words</h2>
             <DisplayHaiku currentHaiku={ currentHaiku } />
+            <p>you have {allowedSyllables} left for this line</p>
             <WordList 
                 currentHaiku={ currentHaiku } 
                 initialWord={ props.initialWord } 
@@ -69,6 +70,9 @@ const WordGenerator = (props) => {
                 handleHaikuWords={ whichLine } 
                 allowedSyllables = { allowedSyllables }
             />
+            {
+                currentSyllables === 17 ? <SaveYourHaiku /> : null
+            }
         </div>
     )
 }
