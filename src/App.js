@@ -9,6 +9,7 @@ function App() {
   return (
     <div>
       <h1>hello friends!</h1>
+<<<<<<< HEAD
 
       <Routes>
         {/* just commenting out the HOME route until the Home component is made! */}
@@ -17,6 +18,15 @@ function App() {
         <Route path="/haiku" element= {<SavedHaikus />}/>
       </Routes>
 
+=======
+      <ResultsPage />
+      {/* <Routes>
+        <Route path= "/home" element= { <Home />}>
+          <Route path="/home/results" element={<ResultsPage />} />
+          <Route path="/home/savedHaikus" element={<SavedHaikus />} />
+        </Route>
+      </Routes> */}
+>>>>>>> d894de7ff1fb574601a9f254f1327b51803150fb
     </div>
   );
 }
