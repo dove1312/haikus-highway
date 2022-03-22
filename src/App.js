@@ -13,12 +13,11 @@ function App() {
   return (
     <div>
       <h1>hello friends!</h1>
-      <Home />
 
       <Routes>
         {/* just commenting out the HOME route until the Home component is made! */}
-        {/* <Route path="/" element={<Home />}/> */}
-        {/* <Route path="/haiku" element={<Home />} /> */}
+        <Route path="/" element={<Home />}/>
+        <Route path="/haiku" element={<Home />} />
         <Route path="/haiku/:userWord" element={<ResultsPage />} />
         <Route path="/savedHaikus" element= {<SavedHaikus />}/>
       </Routes>
