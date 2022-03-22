@@ -43,13 +43,13 @@ const WordGenerator = (props) => {
 
     //once current syllables has rendered, triggers setAllowedSyllables to a base # of available syllables (depending on line of poem), and subtracting current syllables from total amount 
     useEffect(()=> {
-        if (currentSyllables <= 5) {
+        if (currentSyllables < 5) {
             let syllablesLeft = 5 - currentSyllables;
             setAllowedSyllables(syllablesLeft);
-        } else if (currentSyllables > 5 && currentSyllables <= 12) {
+        } else if (currentSyllables >= 5 && currentSyllables < 12) {
             let syllablesLeft = 12 - currentSyllables;
             setAllowedSyllables(syllablesLeft);
-        } else if (currentSyllables > 12) {
+        } else if (currentSyllables >= 12) {
             let syllablesLeft = 17 - currentSyllables;
             setAllowedSyllables(syllablesLeft);
         }
@@ -78,117 +78,6 @@ const WordGenerator = (props) => {
 }
 
 export default WordGenerator;
-
-
-
-
-
-    // const [haikuLines, setHaikuLines]= useState([
-    //      [
-    //           {
-    //                word: "thunder",
-    //                syllables: 4
-    //           },
-    //           {
-    //                word: "flight",
-    //                syllables: 1
-    //           }
-    //      ],
-    //      [
-    //           {
-    //                word: "candy",
-    //                syllables: 2
-    //           },
-    //           {
-    //                word: "doggy",
-    //                syllables: 2
-    //           },
-    //           {
-    //                word: "lightning",
-    //                syllables: 2
-    //           }
-    //      ],
-    //      [
-    //           // {
-    //           //      word: "superstar",
-    //           //      syllables: 2
-    //           // },
-    //           // {
-    //           //      word: "goal",
-    //           //      syllables: 2
-    //           // },
-    //           // {
-    //           //      word: "celebrate",
-    //           //      syllables: 1
-    //           // }
-
-    //      ]
-    // ])
-
-
-
-    // useEffect(()=>{
-    //      let sum = 0;
-    //      haikuLines.forEach((array) => {
-
-    //           // let totalSum = 0;
-    //           for (let i = 0; i < array.length; i++) {
-    //                const syllables = array[i].syllables;
-    //                sum += syllables
-    //                // console.log(syllables, sum);
-    //           }
-
-    //           setCurrentSyllables(currentSyllables + sum);
-
-    //      })
-
-    //      // // console.log(currentSyllables);
-    //      // setAllowedSyllables(allowedSyllables - currentSyllables);
-    //      // console.log(currentSyllables);
-    // },[haikuLines]);
-
-
-    // const userWord = "cat";
-
-    
-
- // // to be replaced with a real function:
-    // const someHaikuArrayFunction = (nextWord) => {
-    //     // update with if current syllable = blahblahblah to push to [0]. [1], or [2]
-    //     let tempArray = currentHaiku;
-    //     tempArray.push(nextWord)
-    //     setCurrentHaiku(tempArray)
-    //}
-
-  
-
-
-
-
-    // const calculateSyllables = ()=>{
-    //      if (currentSyllables < 5){
-    //           console.log('line 1 please');
-    //      }
-    //      else if(currentSyllables == 5){
-    //           console.log('line 1 complete');
-    //      }
-    //      else if(currentSyllables > 5 && currentSyllables < 12){
-    //           console.log('line 2 please');
-    //      }
-    //      else if (currentSyllables == 12){
-    //           console.log('line 2 complete');
-    //      }
-    //      else if (currentSyllables > 12 && currentSyllables < 17){
-    //           console.log('line 3 please');
-    //      } else if (currentSyllables == 17) {
-    //           console.log('done-zo')
-    //      } else {
-    //           console.log('too many syllables');
-    //      }
-    // }
-
-    // calculateSyllables();
-
 
 
 
