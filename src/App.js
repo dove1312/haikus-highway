@@ -3,38 +3,21 @@ import {Link, Route, Routes} from 'react-router-dom';
 //may also need to add in Outlet as we progress
 
 import ResultsPage from './components/ResultsPage';
-import SavedHaikus from "./components/SavedHaikus";
+import SavedHaikus from "./components/SavedHaikus"
 
 function App() {
   return (
     <div>
       <h1>hello friends!</h1>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> efca103388ecf0b3eb624efd8c1957aa9834b294
 
-
-      <ResultsPage />
       <Routes>
         {/* just commenting out the HOME route until the Home component is made! */}
         {/* <Route path="/" element={<Home />}/> */}
-        <Route path="/results/:userWord" element={<ResultsPage />} />
-        <Route path="/haiku" element= {<SavedHaikus />}/>
+        {/* <Route path="/haiku" element={<Home />} /> */}
+        <Route path="/haiku/:userWord" element={<ResultsPage />} />
+        <Route path="/savedHaikus" element= {<SavedHaikus />}/>
       </Routes>
 
-<<<<<<< HEAD
-=======
-      <ResultsPage />
-      {/* <Routes>
-        <Route path= "/home" element= { <Home />}>
-          <Route path="/home/results" element={<ResultsPage />} />
-          <Route path="/home/savedHaikus" element={<SavedHaikus />} />
-        </Route>
-      </Routes> */}
->>>>>>> d894de7ff1fb574601a9f254f1327b51803150fb
-=======
->>>>>>> efca103388ecf0b3eb624efd8c1957aa9834b294
     </div>
   );
 }

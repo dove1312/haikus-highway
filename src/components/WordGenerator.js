@@ -42,13 +42,13 @@ const WordGenerator = (props) => {
 
     //once current syllables has rendered, triggers setAllowedSyllables to a base # of available syllables (depending on line of poem), and subtracting current syllables from total amount 
     useEffect(()=> {
-        if (currentSyllables <= 5) {
+        if (currentSyllables < 5) {
             let syllablesLeft = 5 - currentSyllables;
             setAllowedSyllables(syllablesLeft);
-        } else if (currentSyllables > 5 && currentSyllables <= 12) {
+        } else if (currentSyllables >= 5 && currentSyllables < 12) {
             let syllablesLeft = 12 - currentSyllables;
             setAllowedSyllables(syllablesLeft);
-        } else if (currentSyllables > 12) {
+        } else if (currentSyllables >= 12) {
             let syllablesLeft = 17 - currentSyllables;
             setAllowedSyllables(syllablesLeft);
         }
