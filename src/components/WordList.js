@@ -4,9 +4,6 @@ import axios from "axios";
 
 
 const WordList = (props) => {
-
-    console.log(`allowed syllables is ${props.allowedSyllables}`);
-    
     //set during OnClick event and use this to send next API call:
     const [chosenWord, setChosenWord] = useState("");
     const [wordList, setWordList] = useState([]);
@@ -15,8 +12,6 @@ const WordList = (props) => {
 
     const regex = /^[a-zA-Z]+$/;
 
-    // TEMPORARY UNTIL CAN BE RECEIVED VIA PROPS:
-    const allowedSyllables = 1;
 
     // establish initial word from user word handed down via props:
     if (props.initialWord) {
@@ -41,14 +36,17 @@ const WordList = (props) => {
             props.handleSyllables(returnedData.data[0].numSyllables)
         })
     }, [initialWord])
+
     // call API for each chosen word:
     useEffect(() => {
         wordListApiCall(chosenWord, setWordList)
     }, [chosenWord])
+    
     // filter returnedWordList:
     useEffect(() => {
         const filteredForSyllables = wordList.filter((word) => {
-            return word.numSyllables <= allowedSyllables && word.word.match(regex)
+            // return if syllables are less than allowed syllables and returned result is not a number:
+            return word.numSyllables <= props.allowedSyllables && word.word.match(regex)
         })
         if (filteredForSyllables.length <= 20) {
             setFilteredWordList(filteredForSyllables)
@@ -89,9 +87,16 @@ const WordList = (props) => {
                         }) 
                     : null
             }
-            {/* {
+            {
+                props.allowedSyllables
+                    ? null
+                    : <div className = "buttonContainer" >
+                        <button>Save Haiku</button>
+                    </div>
+            }
+            {
                 console.log(props.currentHaiku)
-            } */}
+            }
         </>
     )
 }
