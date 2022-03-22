@@ -50,6 +50,7 @@ const WordList = (props) => {
         })
         if (filteredForSyllables.length <= 20) {
             setFilteredWordList(filteredForSyllables)
+            console.log("not enough")
         } else {
             let shuffledWords = [];
             while (shuffledWords.length <= 19) {
@@ -77,13 +78,8 @@ const WordList = (props) => {
             {
                 filteredWordList[0]
                     ? 
-<<<<<<< HEAD
                         filteredWordList.map((word) => {
                             // console.log(word)
-=======
-                        wordList.map((word) => {
-                            console.log(word)
->>>>>>> 0467218c620c9ebf6d45806471cbf6a1a5161aa4
                             return (
                                 <li key={word.score}>
                                     <button onClick={function () { handleClick(word.word, word.numSyllables) }} >{word.word}</button>
@@ -93,7 +89,7 @@ const WordList = (props) => {
                     : null
             }
             {
-                
+
             }
         </>
     )

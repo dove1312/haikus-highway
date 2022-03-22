@@ -56,13 +56,17 @@ const WordGenerator = (props) => {
         // console.log(`allowed syllables is ${allowedSyllables}`);
     }, [currentSyllables]);
 
-    
+    console.log(`allowed syllables is ${allowedSyllables}`);
 
     return (
         <div className="wordBox">
             <h2>words</h2>
             <DisplayHaiku currentHaiku={ currentHaiku } />
-            <p>you have {allowedSyllables} left for this line</p>
+            {
+                allowedSyllables
+                    ? <p>you have {allowedSyllables} left for this line</p>
+                    : null
+            }
             <WordList 
                 currentHaiku={ currentHaiku } 
                 initialWord={ props.initialWord } 
