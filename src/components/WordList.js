@@ -4,7 +4,7 @@ import wordListApiCall from "./wordListApiCall";
 
 const WordList = (props) => {
 
-// console.log(props);
+    console.log(`allowed syllables is ${props.allowedSyllables}`);
     
     //set during OnClick event and use this to send next API call:
     const [chosenWord, setChosenWord] = useState("");
@@ -21,7 +21,7 @@ const WordList = (props) => {
     // once we've received the initial word from the user set chosen word manually ONCE:
     useEffect(() => {
         setChosenWord(initialWord)
-        // props.handleHaikuWords(initialWord);
+        props.handleHaikuWords(initialWord);
     }, [initialWord])
 
     // call API for each chosen word:
@@ -35,7 +35,6 @@ const WordList = (props) => {
         props.handleHaikuWords(wordParam);
         setChosenWord(wordParam);
         console.log(wordParam, syllableParam)
-        // props.allowedSyllables(syllableParam);
     }
 
 

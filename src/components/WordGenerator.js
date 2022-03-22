@@ -3,21 +3,22 @@ import WordList from "./WordList";
 import DisplayHaiku from "./DisplayHaiku";
 
 const WordGenerator = (props) => {
-    //props right now is JUST the initial word
-    // console.log(props);
 
+    //state containing the selected words for Haiku
     const [currentHaiku, setCurrentHaiku] = useState([[], [], []]);
-
+    //state containing total current syllables used as user selects
     const [currentSyllables, setCurrentSyllables] = useState(0);
     //allowed syllables will be used to display the # of syllables left on the side for user help 
     const [allowedSyllables, setAllowedSyllables] = useState(17);
 
 
-    //once currentSyllables is being tracked, figure out which line to push the incoming word to 
+    //track total number of syllables used as each word is added to the currentHaiku array
+    const trackingSyllableCount = (numOfSyllables) => {
+        setCurrentSyllables(currentSyllables + numOfSyllables);
+    }
 
+    //once currentSyllables is being tracked, figure out which line to push the incoming word to 
     const whichLine = (wordParam) => {
-        // console.log(wordParam);
-        console.log('whichLine rendered')
         if (currentSyllables < 5) {
             let placeholder = currentHaiku;
             placeholder[0].push(wordParam);
@@ -37,43 +38,23 @@ const WordGenerator = (props) => {
 
     }
 
-    const trackingSyllableCount = (numOfSyllables) => {
-        console.log('trackingSyllableCount rendered');
-        setCurrentSyllables(currentSyllables + numOfSyllables);
-        console.log(currentSyllables);
-        //can we do a state setting here for allowed syllables? if current syllables is being tracked at this point? OR can we put it up inside whichLine
-        
-    }
+    console.log(`current syllables is ${currentSyllables}`);
 
-    // const syllablesPerLine = () => {
-    //     //this works, but need to know how many syllables allowed PER line for .filter method
-    //     // setAllowedSyllables(allowedSyllables - numOfSyllables);
-    //     if(currentSyllables <= 5){
-    //         setAllowedSyllables(5);
-    //         console.log(allowedSyllables);
-    //     } else if(currentSyllables > 5 && currentSyllables <=12){
-    //         setAllowedSyllables(7); 
-    //         console.log(allowedSyllables);
-    //     }else if (currentSyllables > 12 && currentSyllables <=17){
-    //         setAllowedSyllables(5);
-    //         console.log(allowedSyllables);
-    //     } else {
-    //         console.log('too many!');
-    //     }         
-    // }
-    // syllablesPerLine();
-
-    // const howManyLeft = (numOfSyllables)=> {
-    //     if (currentSyllables <= 5) {
-    //         setAllowedSyllables(allowedSyllables - numOfSyllables);
-    //     } else if (currentSyllables > 5 && currentSyllables <= 12) {
-    //         setAllowedSyllables(allowedSyllables - numOfSyllables);
-    //     } else if (currentSyllables > 12 && currentSyllables <= 17) {
-    //         console.log(allowedSyllables); setAllowedSyllables(allowedSyllables - numOfSyllables);
-    //     } else {
-    //         console.log('too many!');
-    //     }
-    // }
+    //once current syllables has rendered, triggers setAllowedSyllables to a base # of available syllables (depending on line of poem), and subtracting current syllables from total amount 
+    useEffect(()=> {
+        if (currentSyllables <= 5) {
+            let syllablesLeft = 5 - currentSyllables;
+            setAllowedSyllables(syllablesLeft);
+        } else if (currentSyllables > 5 && currentSyllables <= 12) {
+            let syllablesLeft = 12 - currentSyllables;
+            setAllowedSyllables(syllablesLeft);
+        } else if (currentSyllables > 12) {
+            let syllablesLeft = 17 - currentSyllables;
+            setAllowedSyllables(syllablesLeft);
+        }
+        // console.log(`allowed syllables is ${allowedSyllables}`);
+    }, [currentSyllables]);
+    
 
     
 
@@ -86,7 +67,7 @@ const WordGenerator = (props) => {
                 initialWord={ props.initialWord } 
                 handleSyllables={ trackingSyllableCount } 
                 handleHaikuWords={ whichLine } 
-                // allowedSyllables = {howManyLeft}
+                allowedSyllables = { allowedSyllables }
             />
         </div>
     )
