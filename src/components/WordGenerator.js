@@ -1,33 +1,79 @@
-import { useEffect, useState } from "react";
+import { useState , useEffect } from "react";
 import WordList from "./WordList";
 import DisplayHaiku from "./DisplayHaiku";
 
 const WordGenerator = (props) => {
 
-    const [currentHaiku, setCurrentHaiku] = useState([ [], [], [] ]);
+    //state containing the selected words for Haiku
+    const [currentHaiku, setCurrentHaiku] = useState([[], [], []]);
+    //state containing total current syllables used as user selects
+    const [currentSyllables, setCurrentSyllables] = useState(0);
+    //allowed syllables will be used to display the # of syllables left on the side for user help 
+    const [allowedSyllables, setAllowedSyllables] = useState(17);
+
+
+    //track total number of syllables used as each word is added to the currentHaiku array
+    const trackingSyllableCount = (numOfSyllables) => {
+        setCurrentSyllables(currentSyllables + numOfSyllables);
+    }
+
+    //once currentSyllables is being tracked, figure out which line to push the incoming word to 
+    const whichLine = (wordParam) => {
+        if (currentSyllables < 5) {
+            let placeholder = currentHaiku;
+            placeholder[0].push(wordParam);
+            setCurrentHaiku(placeholder);
+        } else if (currentSyllables < 12 && currentSyllables >= 5) {
+            let placeholder = currentHaiku;
+            placeholder[1].push(wordParam);
+            setCurrentHaiku(placeholder);
+        } else if (currentSyllables >= 12) {
+            let placeholder = currentHaiku;
+            placeholder[2].push(wordParam);
+            setCurrentHaiku(placeholder);
+        } else {
+            console.log('too many syllables');
+        }
+        console.log(currentHaiku);
+
+    }
+
+    console.log(`current syllables is ${currentSyllables}`);
+
+    //once current syllables has rendered, triggers setAllowedSyllables to a base # of available syllables (depending on line of poem), and subtracting current syllables from total amount 
+    useEffect(()=> {
+        if (currentSyllables <= 5) {
+            let syllablesLeft = 5 - currentSyllables;
+            setAllowedSyllables(syllablesLeft);
+        } else if (currentSyllables > 5 && currentSyllables <= 12) {
+            let syllablesLeft = 12 - currentSyllables;
+            setAllowedSyllables(syllablesLeft);
+        } else if (currentSyllables > 12) {
+            let syllablesLeft = 17 - currentSyllables;
+            setAllowedSyllables(syllablesLeft);
+        }
+        // console.log(`allowed syllables is ${allowedSyllables}`);
+    }, [currentSyllables]);
+    
 
     
-    // to be replaced with a real function:
-    const someSyllableFunction = (syllableInfo) => {
-        console.log(syllableInfo);
-        // probably State Stuff
-        // ex) setCurrentSyllables(currentSyllables + syllableInfo)
-    }
-    // to be replaced with a real function:
-    const someHaikuArrayFunction = (nextWord) => {
-        // update with if current syllable = blahblahblah to push to [0]. [1], or [2]
-        let tempArray = currentHaiku;
-        tempArray.push(nextWord)
-        setCurrentHaiku(tempArray)
-    }
 
     return (
         <div className="wordBox">
             <h2>words</h2>
             <DisplayHaiku currentHaiku={ currentHaiku } />
-            <WordList currentHaiku={ currentHaiku } initialWord={ props.initialWord } handleSyllables={ someSyllableFunction } handleHaikuWords={ someHaikuArrayFunction } />
+            <WordList 
+                currentHaiku={ currentHaiku } 
+                initialWord={ props.initialWord } 
+                handleSyllables={ trackingSyllableCount } 
+                handleHaikuWords={ whichLine } 
+                allowedSyllables = { allowedSyllables }
+            />
         </div>
     )
 }
 
 export default WordGenerator;
+
+
+

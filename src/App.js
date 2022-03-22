@@ -3,14 +3,19 @@ import {Link, Route, Routes} from 'react-router-dom';
 //may also need to add in Outlet as we progress
 
 import ResultsPage from './components/ResultsPage';
-import SavedHaikus from "./components/SavedHaikus"
+import SavedHaikus from "./components/SavedHaikus";
 
 function App() {
   return (
     <div>
       <h1>hello friends!</h1>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> efca103388ecf0b3eb624efd8c1957aa9834b294
 
+
+      <ResultsPage />
       <Routes>
         {/* just commenting out the HOME route until the Home component is made! */}
         {/* <Route path="/" element={<Home />}/> */}
@@ -18,6 +23,7 @@ function App() {
         <Route path="/haiku" element= {<SavedHaikus />}/>
       </Routes>
 
+<<<<<<< HEAD
 =======
       <ResultsPage />
       {/* <Routes>
@@ -27,6 +33,8 @@ function App() {
         </Route>
       </Routes> */}
 >>>>>>> d894de7ff1fb574601a9f254f1327b51803150fb
+=======
+>>>>>>> efca103388ecf0b3eb624efd8c1957aa9834b294
     </div>
   );
 }

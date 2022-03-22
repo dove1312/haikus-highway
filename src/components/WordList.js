@@ -4,6 +4,9 @@ import axios from "axios";
 
 
 const WordList = (props) => {
+
+    console.log(`allowed syllables is ${props.allowedSyllables}`);
+    
     //set during OnClick event and use this to send next API call:
     const [chosenWord, setChosenWord] = useState("");
     const [wordList, setWordList] = useState([]);
@@ -86,9 +89,9 @@ const WordList = (props) => {
                         }) 
                     : null
             }
-            {
+            {/* {
                 console.log(props.currentHaiku)
-            }
+            } */}
         </>
     )
 }
