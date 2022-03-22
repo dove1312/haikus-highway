@@ -10,8 +10,6 @@ function App() {
     <div>
       <h1>hello friends!</h1>
 
-
-      <ResultsPage />
       <Routes>
         {/* just commenting out the HOME route until the Home component is made! */}
         {/* <Route path="/" element={<Home />}/> */}

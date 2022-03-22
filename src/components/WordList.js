@@ -45,7 +45,7 @@ const WordList = (props) => {
                 wordList[0]
                     ? 
                         wordList.map((word) => {
-                            // console.log(word)
+                            console.log(word)
                             return (
                                 <li key={word.score}>
                                     <button onClick={function () { handleClick(word.word, word.numSyllables) }} >{word.word}</button>
