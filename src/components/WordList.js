@@ -24,7 +24,7 @@ const WordList = (props) => {
     useEffect(() => {
         setChosenWord(initialWord)
         // manually push first word to haiku
-        props.handleHaikuWords(initialWord);
+        props.handleHaikuWords(initialWord, props.currentSyllables);
         axios({
             url: "https://api.datamuse.com/words",
             params: {
@@ -33,7 +33,7 @@ const WordList = (props) => {
             }
         }).then((returnedData) => {
             // manually push first word syllables to 
-            console.log(returnedData.data[0]);
+            // console.log(returnedData.data[0]);
             props.handleSyllables(returnedData.data[0].numSyllables)
         })
     }, [initialWord])
@@ -76,7 +76,7 @@ const WordList = (props) => {
 
     return (
         <>
-            <h3>I'm the words!</h3>
+            {/* <h3>I'm the words!</h3> */}
             {
                 filteredWordList[0]
                     ? 
