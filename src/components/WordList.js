@@ -63,13 +63,15 @@ const WordList = (props) => {
     }, [wordList])
 
     // handle click on each word:
-    const handleClick = (wordParam, syllableParam) => {
+    const handleClick = (wordParam, syllableParam,idParam) => {
+        console.log(idParam)
         props.handleSyllables(syllableParam);
-        props.handleHaikuWords(wordParam);
+        props.handleHaikuWords(wordParam, idParam);
         setChosenWord(wordParam);
-        console.log(wordParam, syllableParam)
+        // console.log(wordParam, syllableParam, idParam)
     }
 
+    
 
     return (
         <>
@@ -78,25 +80,17 @@ const WordList = (props) => {
                 filteredWordList[0]
                     ? 
                         filteredWordList.map((word) => {
-                            // console.log(word)
                             return (
                                 <li key={word.score}>
-                                    <button onClick={function () { handleClick(word.word, word.numSyllables) }} >{word.word}</button>
+                                    <button onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
                                 </li>
                             )
                         }) 
                     : null
             }
-            {
-                props.allowedSyllables
-                    ? null
-                    : <div className = "buttonContainer" >
-                        <button>Save Haiku</button>
-                    </div>
-            }
-            {
+            {/* {
                 console.log(props.currentHaiku)
-            }
+            } */}
         </>
     )
 }
