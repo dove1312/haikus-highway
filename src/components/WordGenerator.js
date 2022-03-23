@@ -11,8 +11,6 @@ const WordGenerator = (props) => {
     const [currentSyllables, setCurrentSyllables] = useState(0);
     //allowed syllables will be used to display the # of syllables left on the side for user help 
     const [allowedSyllables, setAllowedSyllables] = useState(17);
-    //track 'score' of each word selected to use as the key value to pass down to displayHaiku
-    const [id, setId]= useState(0);
 
     //track total number of syllables used as each word is added to the currentHaiku array
     const trackingSyllableCount = (numOfSyllables) => {
@@ -21,7 +19,11 @@ const WordGenerator = (props) => {
 
     //once currentSyllables is being tracked, figure out which line to push the incoming object to (object holding both the word and the key)
     const whichLine = (wordParam, idParam) => {
-        if (currentSyllables < 5) {
+        //when the first word is received, the idParam has not yet been defined, so set the first value of "key" to be the currentSyllables value on initialization (which is 0)
+        if (currentSyllables ==0){
+            let placeholder = currentHaiku;
+            placeholder[0].push({word:wordParam, key:currentSyllables})
+        } else if (currentSyllables < 5) {
             let placeholder = currentHaiku;
             placeholder[0].push({ word:wordParam, key:idParam });
             setCurrentHaiku(placeholder);
@@ -64,7 +66,6 @@ const WordGenerator = (props) => {
             <DisplayHaiku 
                 currentHaiku={ currentHaiku }
                 currentSyllables = { currentSyllables }
-                id={id}
             />
             <p>you have {allowedSyllables} left for this line</p>
             <WordList 

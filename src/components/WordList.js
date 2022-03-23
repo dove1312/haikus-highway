@@ -33,6 +33,7 @@ const WordList = (props) => {
             }
         }).then((returnedData) => {
             // manually push first word syllables to 
+            console.log(returnedData.data[0]);
             props.handleSyllables(returnedData.data[0].numSyllables)
         })
     }, [initialWord])
