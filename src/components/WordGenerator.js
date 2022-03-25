@@ -13,6 +13,8 @@ const WordGenerator = (props) => {
     const [allowedSyllables, setAllowedSyllables] = useState(17);
     //state to track what the last word in the array is 
     const [lastWord, setLastWord]= useState("");
+    //state to count the clicks of the remove button to trigger the re-render of lastWord
+    const [removeClicks, setRemoveClicks]= useState(0);
 
     //track total number of syllables used as each word is added to the currentHaiku array
     const trackingSyllableCount = (numOfSyllables) => {
@@ -57,8 +59,6 @@ const WordGenerator = (props) => {
 
     const removeFromHaiku = (haikuParam, haikuParam2, haikuParam3)=>{
         setCurrentHaiku([[...haikuParam], [...haikuParam2],[...haikuParam3]]);
-        // now need to figure out how to setSyllableCount-
-            //maybe look at whichLine to see if we get the syllables to be included here as well - THEN we can setCurrentSYllables here to loop through all the words and add up the syllables
 
         console.log(currentHaiku);
         let sum = 0
@@ -71,17 +71,30 @@ const WordGenerator = (props) => {
             console.log(`the sum is ${sum}`);
             setCurrentSyllables(sum);
         })
+
+        setRemoveClicks(removeClicks + 1);
     }
 
     console.log(`current syllables is ${currentSyllables}`);
 
-    //need to be able to set lastWord to be the last word inside of the currentHaiku array
-        //possibly pull chosenWord - but once you remove, chosen word won't be relevant 
-        //maybe .find() method, or .lastIndexOf() and just search for "word"- since all objects will have the property "key" inside - but does.find look for property  names?
-        //if/else statements based on syllables 0 then store last item of array in variable (lastitem = array(array.length-1))
-    //function needs to setLastWord to whichever word we pull from array 
-    //does this now need a useEffect- trigger upon change of currentHaiku
-
+    //pull the last word of the last array, and set that word as the lastWord state
+    useEffect(()=> {
+        //if removeClicks exists (aka has been clicked at all), then reset lastWord
+        if (removeClicks){
+            let lastWord;
+            //if the last line exists, pull the last word object from the array
+            if (currentHaiku[2][0]){
+                lastWord = currentHaiku[2].slice(-1);
+                setLastWord(lastWord[0].word);
+            } else if (currentHaiku[1][0]){
+                lastWord = currentHaiku[1].slice(-1);
+                setLastWord(lastWord[0].word);
+            } else {
+                lastWord= currentHaiku[0].slice(-1);
+                setLastWord(lastWord[0].word);
+            }
+        }
+    }, [removeClicks])
 
     return (
         <div className="wordBox">
@@ -96,9 +109,9 @@ const WordGenerator = (props) => {
                 initialWord={ props.initialWord } 
                 handleSyllables={ trackingSyllableCount } 
                 handleHaikuWords={ whichLine } 
-                // handleLastWord = { findLastWord }
                 allowedSyllables = { allowedSyllables }
                 currentSyllables={ currentSyllables }
+                newWord = {lastWord}
             />
             {
                 currentSyllables === 17 ? <SaveYourHaiku /> : null

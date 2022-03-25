@@ -11,7 +11,7 @@ import Home from "./components/Home";
 function App() {
 
   return (
-    <div>
+    <div className='appContainer'>
       <h1>hello friends!</h1>
 
       <Routes>

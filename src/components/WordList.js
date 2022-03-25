@@ -12,13 +12,11 @@ const WordList = (props) => {
     const [initialWord, setInitialWord] = useState("");
     // set as true when no returned words to show text input:
     const [showInput, setShowInput] = useState(false);
-    // track user input inside text input:
-    const [userInput, setUserInput] = useState("");
-
 
     const regex = /^[a-zA-Z]+$/;
 
 
+    console.log(props.newWord);
     // establish initial word from user word handed down via props:
     if (props.initialWord) {
         // ensure initialWord only updates ONCE:
@@ -28,9 +26,6 @@ const WordList = (props) => {
     }
 
     const handleNewWord = (word) => {
-        //0 refers to the first key value for first word
-        ///////NEED TO UPDATE SYLLABLE COUNT HERE - IT ISN'T REGISTERING////
-        props.handleHaikuWords(word, 2, 0);
         axios({
             url: "https://api.datamuse.com/words",
             params: {
@@ -39,13 +34,13 @@ const WordList = (props) => {
             }
         }).then((returnedData) => {
             props.handleSyllables(returnedData.data[0].numSyllables)
+            props.handleHaikuWords(word, returnedData.data[0].numSyllables, props.currentSyllables);
         })
     }
     // once we've received the initial word from the user set chosen word manually ONCE:
     useEffect(() => {
         setChosenWord(initialWord)
         // manually push first word to haiku
-        console.log(initialWord)
         handleNewWord(initialWord)
         // props.handleHaikuWords(initialWord, props.currentSyllables);
         // axios({
@@ -64,10 +59,14 @@ const WordList = (props) => {
     // call API for each chosen word:
     useEffect(() => {
         wordListApiCall(chosenWord, setWordList)
-        ///CAN I PULL THE CHOSEN WORD FROM HERE? - don't think so 
-        // console.log(chosenWord)
-        // props.handleLastWord(chosenWord);
     }, [chosenWord])
+
+    //call API for when the remove button is hit (call based on last word displayed)
+    useEffect(()=> {
+        if(props.newWord){
+            setChosenWord(props.newWord);
+        }
+    }, [props.newWord])
     
     // filter returnedWordList:
     useEffect(() => {
@@ -80,7 +79,6 @@ const WordList = (props) => {
             setShowInput(true)
         } else if (filteredForSyllables.length <= 20) {
             setFilteredWordList(filteredForSyllables)
-            // console.log("not enough")
             setShowInput(false)
         } else {
             let shuffledWords = [];
@@ -100,7 +98,6 @@ const WordList = (props) => {
         props.handleSyllables(syllableParam);
         props.handleHaikuWords(wordParam, syllableParam, idParam);
         setChosenWord(wordParam);
-        // console.log(wordParam, syllableParam, idParam)
     }
 
     const handleUserInput = (userWord) => {
@@ -110,26 +107,27 @@ const WordList = (props) => {
     }
 
     return (
-        <>
-            {/* <h3>I'm the words!</h3> */}
-            {
-                filteredWordList[0]
-                    ? 
+        <div className="WordBox">
+            <ul className="wordListContainer">
+                {
+                    filteredWordList[0]
+                        ?
                         filteredWordList.map((word) => {
                             return (
                                 <li key={word.score}>
                                     <button onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
                                 </li>
                             )
-                        }) 
-                    : null
-            }
+                        })
+                        : null
+                }
+            </ul>
             {
                 showInput
-                    ?<TextInput allowedSyllables={ props.allowedSyllables } customFunction={ handleUserInput } />
+                    ?<TextInput className="haikuPage" allowedSyllables={ props.allowedSyllables } customFunction={ handleUserInput } />
                     :null
             }
-        </>
+        </div>
     )
 }
 
