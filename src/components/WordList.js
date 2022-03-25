@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import wordListApiCall from "../reusableLogic/wordListApiCall";
+import TextInput from './TextInput';
 import axios from "axios";
 
 
@@ -25,22 +26,37 @@ const WordList = (props) => {
             setInitialWord( props.initialWord )
         }
     }
+
+    const handleNewWord = (word) => {
+        props.handleHaikuWords(word, props.currentSyllables);
+        axios({
+            url: "https://api.datamuse.com/words",
+            params: {
+                sp: word,
+                md: "s"
+            }
+        }).then((returnedData) => {
+            props.handleSyllables(returnedData.data[0].numSyllables)
+        })
+    }
     // once we've received the initial word from the user set chosen word manually ONCE:
     useEffect(() => {
         setChosenWord(initialWord)
         // manually push first word to haiku
-        props.handleHaikuWords(initialWord, props.currentSyllables);
-        axios({
-            url: "https://api.datamuse.com/words",
-            params: {
-                sp: initialWord,
-                md: "s"
-            }
-        }).then((returnedData) => {
-            // manually push first word syllables to 
-            // console.log(returnedData.data[0]);
-            props.handleSyllables(returnedData.data[0].numSyllables)
-        })
+
+        handleNewWord(initialWord)
+        // props.handleHaikuWords(initialWord, props.currentSyllables);
+        // axios({
+        //     url: "https://api.datamuse.com/words",
+        //     params: {
+        //         sp: initialWord,
+        //         md: "s"
+        //     }
+        // }).then((returnedData) => {
+        //     // manually push first word syllables to 
+        //     // console.log(returnedData.data[0]);
+        //     props.handleSyllables(returnedData.data[0].numSyllables)
+        // })
     }, [initialWord])
 
     // call API for each chosen word:
@@ -83,7 +99,11 @@ const WordList = (props) => {
         // console.log(wordParam, syllableParam, idParam)
     }
 
-    
+    const handleUserInput = (userWord) => {
+        setChosenWord(userWord)
+        handleNewWord(userWord)
+        setShowInput(false)
+    }
 
     return (
         <>
@@ -102,7 +122,7 @@ const WordList = (props) => {
             }
             {
                 showInput
-                    ?<p>I'm totally an input</p>
+                    ?<TextInput allowedSyllables={ props.allowedSyllables } customFunction={ handleUserInput } />
                     :null
             }
         </>

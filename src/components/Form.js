@@ -86,3 +86,10 @@ function Form() {
 }
 
 export default Form;
+
+// NOTE: if importing <TextInput /> hand down "navigateFunction" as "customFunction"
+// and set allowedSyllables via props to 5
+// const navigate = useNavigate();
+// const navigateFunction = (userWord) => {
+//   navigate(`/haiku/${userWord}`)
+// }
