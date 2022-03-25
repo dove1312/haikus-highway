@@ -8,7 +8,6 @@ const TextInput = (props) => {
     const [spelling, setSpelling] = useState();
 
     useEffect(() => {
-        // console.log('useEffect running')
         if (userInput) {
             axios({
                 url: `https://api.datamuse.com/words?sp=${userInput}&md=s`
@@ -32,7 +31,6 @@ const TextInput = (props) => {
         }
     }
 
-
     const handleChange = (event) => {
         setUserInput(event.target.value);
     }
@@ -52,7 +50,7 @@ const TextInput = (props) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit} id="form">
+            <form className='textInput' onSubmit={handleSubmit} id="form">
                 <input onChange={handleChange} type="text" id="input" name="input" />
                 <label htmlFor="input"></label>
                 <button disabled={ disableButton(userInput) }>Submit</button>
