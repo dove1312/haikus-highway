@@ -59,7 +59,6 @@ const WordGenerator = (props) => {
 
     return (
         <div className="wordBox">
-            <h2>words</h2>
             <DisplayHaiku 
                 currentHaiku={ currentHaiku }
                 currentSyllables = { currentSyllables }

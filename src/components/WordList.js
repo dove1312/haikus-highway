@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import wordListApiCall from "./wordListApiCall";
+import wordListApiCall from "../reusableLogic/wordListApiCall";
 import axios from "axios";
 
 
@@ -60,6 +60,7 @@ const WordList = (props) => {
         } else if (filteredForSyllables.length <= 20) {
             setFilteredWordList(filteredForSyllables)
             console.log("not enough")
+            setShowInput(false)
         } else {
             let shuffledWords = [];
             while (shuffledWords.length <= 19) {
@@ -69,6 +70,7 @@ const WordList = (props) => {
                 }
             }
             setFilteredWordList(shuffledWords)
+            setShowInput(false)
         }
     }, [wordList])
 

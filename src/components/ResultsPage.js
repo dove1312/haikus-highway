@@ -9,8 +9,9 @@ const ResultsPage=()=> {
 
      return(
           <section className="resultsPage">
-               <h2>Here are your results</h2>
-               <WordGenerator initialWord={ userWord } />
+               <div className="wrapper">
+                    <WordGenerator initialWord={userWord} />
+               </div>
           </section>
      )
 }
