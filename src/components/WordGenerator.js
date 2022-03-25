@@ -35,8 +35,6 @@ const WordGenerator = (props) => {
         } else {
             console.log('too many syllables');
         }
-        // console.log(currentHaiku);
-
     }
 
     // console.log(`current syllables is ${currentSyllables}`);
@@ -57,12 +55,27 @@ const WordGenerator = (props) => {
     }, [currentSyllables]);
 
 
+    const removeFromHaiku = (haikuParam, haikuParam2, haikuParam3)=>{
+        setCurrentHaiku([[...haikuParam], [...haikuParam2],[...haikuParam3]]);
+        // now need to figure out how to setSyllableCount-
+            //maybe look at whichLine to see if we get the syllables to be included here as well - THEN we can setCurrentSYllables here to loop through all the words and add up the syllables
+    }
+
+    //set currentWord to last word in the array - look at chosenWord- whenever chosenWord changes, it automatically does the API call - 
+        //so we may need another new state (possibly in word generator, or that plus displayHaiku) - a state for previous word
+            //word list- we can make a useEffect - props.previousWord ? MAYBE
+            //so whenever previous word changes, set chosenWord to previous word (setPreviousWord(props.previousWords ))
+
+   console.log("what is being passed back down:");
+   console.log(currentHaiku);
+
     return (
         <div className="wordBox">
             <h2>words</h2>
             <DisplayHaiku 
                 currentHaiku={ currentHaiku }
                 currentSyllables = { currentSyllables }
+                removeFromHaiku = { removeFromHaiku }
             />
             {allowedSyllables != 0 ? <p>you have {allowedSyllables} left for this line</p>: null}
             <WordList 

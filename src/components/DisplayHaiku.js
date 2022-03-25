@@ -6,21 +6,20 @@ const DisplayHaiku = (props) => {
     const syllables = props.currentSyllables;
     const haikuLines = props.currentHaiku;
 
-    console.log(haikuLines[0]);
+    //defining variables for each of the haiku lines as they update, so when updating one line with the 'remove' button, we can maintain the other 2 lines 
+    const line1 = haikuLines[0];
+    const line2 = haikuLines[1];
+    const line3 = haikuLines[2]
 
-    // const handleClick= ()=> {
-        
-    //     const line1 = haikuLines[0];
-    //     line1.pop();
-    //     console.log(haikuLines[0]);
-    //     // const wordToRemove = event.target.previousElementSibling.outerText;
-        
-    //     // line1.find(()=>{ 
-    //     //     console.log(wordToRemove)
-    //     //     line1.pop(wordToRemove);
-    //     // })
-        
-    // }
+    const handleClick= ()=> {        
+        line1.pop();
+        props.removeFromHaiku(line1, line2, line3);
+    }
+
+    const handleClick2 = ()=> {
+        line2.pop();
+        props.removeFromHaiku(line1,line2, line3);
+    }
 
     return(
         <>
@@ -35,9 +34,9 @@ const DisplayHaiku = (props) => {
                     )
                 })
                 }
-                {/* <button
-                    // style={syllables <= 5 ? {display:"block"} : {display:"none"}}
-                    onClick={handleClick} >REMOVE</button> */}
+                <button
+                    style={syllables <= 5 ? {display:"block"} : {display:"none"}}
+                    onClick={handleClick} >REMOVE</button>
                 
             </ul>
             <ul
@@ -50,6 +49,9 @@ const DisplayHaiku = (props) => {
                     )
                 })
                 }
+                <button
+                    style={syllables > 5 && syllables <=12 ? {display:"block"} : {display:"none"}}
+                    onClick={handleClick2} >REMOVE</button>
             </ul>
             <ul
                 className="line3"
@@ -62,7 +64,9 @@ const DisplayHaiku = (props) => {
                 })
                 }
             </ul>
-            {/* <button onClick={handleClick}>Not happy with a word? get rid of it</button> */}
+            <button 
+                style={syllables > 12 ? { display: "block" } : { display: "none" }}
+                onClick={handleClick}>Not happy with a word? get rid of it</button>
         </>
         
     )
@@ -77,3 +81,11 @@ export default DisplayHaiku
     //need to trigger a change of currentSyllables
 
     //when that button is clicked, we may need to trigger another API call based on the value of object.word 
+
+
+
+    // const wordToRemove = event.target.previousElementSibling.outerText;
+        // line1.find(()=>{ 
+        //     console.log(wordToRemove)
+        //     line1.pop(wordToRemove);
+        // })
