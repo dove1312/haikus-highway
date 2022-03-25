@@ -5,12 +5,13 @@ import WordGenerator from "./WordGenerator";
 
 const ResultsPage=()=> {
      const { userWord } = useParams();
-     console.log(userWord)
+     // console.log(userWord)
 
      return(
           <section className="resultsPage">
-               <h2>Here are your results</h2>
-               <WordGenerator initialWord={ userWord } />
+               <div className="wrapper">
+                    <WordGenerator initialWord={userWord} />
+               </div>
           </section>
      )
 }

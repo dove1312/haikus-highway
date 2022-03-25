@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
-import wordListApiCall from "./wordListApiCall";
+import wordListApiCall from "../reusableLogic/wordListApiCall";
+import TextInput from './TextInput';
+import axios from "axios";
 
 
 const WordList = (props) => {
     //set during OnClick event and use this to send next API call:
     const [chosenWord, setChosenWord] = useState("");
     const [wordList, setWordList] = useState([]);
+    const [filteredWordList, setFilteredWordList] = useState([])
     const [initialWord, setInitialWord] = useState("");
+    // set as true when no returned words to show text input:
+    const [showInput, setShowInput] = useState(false);
 
+    const regex = /^[a-zA-Z]+$/;
+
+
+    console.log(props.newWord);
     // establish initial word from user word handed down via props:
     if (props.initialWord) {
         // ensure initialWord only updates ONCE:
@@ -15,10 +24,36 @@ const WordList = (props) => {
             setInitialWord( props.initialWord )
         }
     }
+
+    const handleNewWord = (word) => {
+        axios({
+            url: "https://api.datamuse.com/words",
+            params: {
+                sp: word,
+                md: "s"
+            }
+        }).then((returnedData) => {
+            props.handleSyllables(returnedData.data[0].numSyllables)
+            props.handleHaikuWords(word, returnedData.data[0].numSyllables, props.currentSyllables);
+        })
+    }
     // once we've received the initial word from the user set chosen word manually ONCE:
     useEffect(() => {
         setChosenWord(initialWord)
-        props.handleHaikuWords(initialWord);
+        // manually push first word to haiku
+        handleNewWord(initialWord)
+        // props.handleHaikuWords(initialWord, props.currentSyllables);
+        // axios({
+        //     url: "https://api.datamuse.com/words",
+        //     params: {
+        //         sp: initialWord,
+        //         md: "s"
+        //     }
+        // }).then((returnedData) => {
+        //     // manually push first word syllables to 
+        //     // console.log(returnedData.data[0]);
+        //     props.handleSyllables(returnedData.data[0].numSyllables)
+        // })
     }, [initialWord])
 
     // call API for each chosen word:
@@ -26,35 +61,73 @@ const WordList = (props) => {
         wordListApiCall(chosenWord, setWordList)
     }, [chosenWord])
 
+    //call API for when the remove button is hit (call based on last word displayed)
+    useEffect(()=> {
+        if(props.newWord){
+            setChosenWord(props.newWord);
+        }
+    }, [props.newWord])
+    
+    // filter returnedWordList:
+    useEffect(() => {
+        const filteredForSyllables = wordList.filter((word) => {
+            // return if syllables are less than allowed syllables and returned result is not a number:
+            return word.numSyllables <= props.allowedSyllables && word.word.match(regex)
+        })
+        if (!wordList[0]) {
+            setFilteredWordList([])
+            setShowInput(true)
+        } else if (filteredForSyllables.length <= 20) {
+            setFilteredWordList(filteredForSyllables)
+            setShowInput(false)
+        } else {
+            let shuffledWords = [];
+            while (shuffledWords.length <= 19) {
+                const random = filteredForSyllables[Math.floor(Math.random() * filteredForSyllables.length)]
+                if (!shuffledWords.includes(random)) {
+                    shuffledWords.push(random)
+                }
+            }
+            setFilteredWordList(shuffledWords)
+            setShowInput(false)
+        }
+    }, [wordList])
+
     // handle click on each word:
-    const handleClick = (wordParam, syllableParam) => {
+    const handleClick = (wordParam, syllableParam,idParam) => {
         props.handleSyllables(syllableParam);
-        props.handleHaikuWords(wordParam);
+        props.handleHaikuWords(wordParam, syllableParam, idParam);
         setChosenWord(wordParam);
-        console.log(wordParam, syllableParam)
     }
 
+    const handleUserInput = (userWord) => {
+        setChosenWord(userWord)
+        handleNewWord(userWord)
+        setShowInput(false)
+    }
 
     return (
-        <>
-            <h3>I'm the words!</h3>
-            {
-                wordList[0]
-                    ? 
-                        wordList.map((word) => {
-                            // console.log(word)
+        <div className="WordBox">
+            <ul className="wordListContainer">
+                {
+                    filteredWordList[0]
+                        ?
+                        filteredWordList.map((word) => {
                             return (
                                 <li key={word.score}>
-                                    <button onClick={function () { handleClick(word.word, word.numSyllables) }} >{word.word}</button>
+                                    <button onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
                                 </li>
                             )
-                        }) 
-                    : null
-            }
+                        })
+                        : null
+                }
+            </ul>
             {
-                console.log(props.currentHaiku)
+                showInput
+                    ?<TextInput className="haikuPage" allowedSyllables={ props.allowedSyllables } customFunction={ handleUserInput } />
+                    :null
             }
-        </>
+        </div>
     )
 }
 

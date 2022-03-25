@@ -11,15 +11,15 @@ import Home from "./components/Home";
 function App() {
 
   return (
-    <div>
+    <div className='appContainer'>
       <h1>hello friends!</h1>
-      <Home />
 
       <Routes>
         {/* just commenting out the HOME route until the Home component is made! */}
-        {/* <Route path="/" element={<Home />}/> */}
-        <Route path="/results/:userWord" element={<ResultsPage />} />
-        <Route path="/haiku" element= {<SavedHaikus />}/>
+        <Route path="/" element={<Home />}/>
+        <Route path="/haiku" element={<Home />} />
+        <Route path="/haiku/:userWord" element={<ResultsPage />} />
+        <Route path="/savedHaikus" element= {<SavedHaikus />}/>
       </Routes>
 
     </div>
