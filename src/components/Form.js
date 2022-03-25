@@ -22,9 +22,6 @@ function Form() {
     }
   },[userInput])
 
-
-
-
   const handleChange = (event) => {
     // if(userInput!==""){
     //   axios({
@@ -53,7 +50,7 @@ function Form() {
   const stringDoesNotPass = (string) => {
     if(/^[a-z]+$/i.test(string)){
       return false;
-    }else{
+    } else {
       return true;
     }
   }
@@ -66,7 +63,7 @@ function Form() {
       <form onSubmit={handleSubmit} id="form">
         <input onChange={handleChange} type="text" id="input" name="input" />
         <label htmlFor="input"></label>
-        <button disabled={stringDoesNotPass(userInput)}>Submit</button>
+        <button disabled={stringDoesNotPass(userInput) || syllableCount > 5}>Submit</button>
       </form>
       {/* {!userInput && (
         <p>enter word</p>
