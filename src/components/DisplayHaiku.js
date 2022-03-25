@@ -28,7 +28,33 @@ const DisplayHaiku = (props) => {
     }
 
     return(
-        // <>
+        
+        <HaikuReturn syllables={ syllables } haikuArray={ haikuLines } handleClick= {handleClick} handleClick2={handleClick2} handleClick3= {handleClick3}/>
+    )
+}
+
+export default DisplayHaiku
+
+//create a button that will display for each of the lines
+    //that button must recognize the last object of the array (haikuLine) and .pop() to remove 
+    //create a turnery that is disappears when the syllables is reached 
+    //need to trigger a rerender of the <UL> to display uploaded function
+    //need to trigger a change of currentSyllables
+
+    //when that button is clicked, we may need to trigger another API call based on the value of object.word 
+
+
+
+    // const wordToRemove = event.target.previousElementSibling.outerText;
+        // line1.find(()=>{ 
+        //     console.log(wordToRemove)
+        //     line1.pop(wordToRemove);
+        // })
+
+
+
+
+// <>
         //     <h2>Here's Your Haiku!</h2>
         //     <ul 
         //         className="line1"
@@ -43,7 +69,7 @@ const DisplayHaiku = (props) => {
         //         <button
         //             style={syllables <= 5 ? {display:"block"} : {display:"none"}}
         //             onClick={handleClick} >REMOVE</button>
-                
+
         //     </ul>
         //     <ul
         //         className="line2"
@@ -74,25 +100,3 @@ const DisplayHaiku = (props) => {
         //         style={syllables > 12 ? { display: "block" } : { display: "none" }}
         //         onClick={handleClick}>Not happy with a word? get rid of it</button>
         // </>
-        
-        <HaikuReturn syllables={ syllables } haikuArray={ haikuLines } handleClick= {handleClick} handleClick2={handleClick2} handleClick3= {handleClick3}/>
-    )
-}
-
-export default DisplayHaiku
-
-//create a button that will display for each of the lines
-    //that button must recognize the last object of the array (haikuLine) and .pop() to remove 
-    //create a turnery that is disappears when the syllables is reached 
-    //need to trigger a rerender of the <UL> to display uploaded function
-    //need to trigger a change of currentSyllables
-
-    //when that button is clicked, we may need to trigger another API call based on the value of object.word 
-
-
-
-    // const wordToRemove = event.target.previousElementSibling.outerText;
-        // line1.find(()=>{ 
-        //     console.log(wordToRemove)
-        //     line1.pop(wordToRemove);
-        // })
