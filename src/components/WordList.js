@@ -15,6 +15,8 @@ const WordList = (props) => {
 
     const regex = /^[a-zA-Z]+$/;
 
+
+    console.log(props.newWord);
     // establish initial word from user word handed down via props:
     if (props.initialWord) {
         // ensure initialWord only updates ONCE:
@@ -58,6 +60,13 @@ const WordList = (props) => {
     useEffect(() => {
         wordListApiCall(chosenWord, setWordList)
     }, [chosenWord])
+
+    //call API for when the remove button is hit (call based on last word displayed)
+    useEffect(()=> {
+        if(props.newWord){
+            setChosenWord(props.newWord);
+        }
+    }, [props.newWord])
     
     // filter returnedWordList:
     useEffect(() => {

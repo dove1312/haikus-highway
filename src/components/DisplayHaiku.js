@@ -70,3 +70,4 @@ export default DisplayHaiku
         //     console.log(wordToRemove)
         //     line1.pop(wordToRemove);
         // })
+
