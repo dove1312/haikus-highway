@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import WordList from "./WordList";
 import DisplayHaiku from "./DisplayHaiku";
 import SaveYourHaiku from "./SaveYourHaiku";
@@ -59,7 +59,6 @@ const WordGenerator = (props) => {
 
     return (
         <div className="wordBox">
-            <h2>words</h2>
             <DisplayHaiku 
                 currentHaiku={ currentHaiku }
                 currentSyllables = { currentSyllables }
@@ -70,8 +69,8 @@ const WordGenerator = (props) => {
                 initialWord={ props.initialWord } 
                 handleSyllables={ trackingSyllableCount } 
                 handleHaikuWords={ whichLine } 
-                currentSyllables= {currentSyllables}
                 allowedSyllables = { allowedSyllables }
+                currentSyllables={ currentSyllables }
             />
             {
                 currentSyllables === 17 ? <SaveYourHaiku /> : null

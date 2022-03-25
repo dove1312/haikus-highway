@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import wordListApiCall from "./wordListApiCall";
+import wordListApiCall from "../reusableLogic/wordListApiCall";
 import axios from "axios";
 
 
@@ -9,6 +9,11 @@ const WordList = (props) => {
     const [wordList, setWordList] = useState([]);
     const [filteredWordList, setFilteredWordList] = useState([])
     const [initialWord, setInitialWord] = useState("");
+    // set as true when no returned words to show text input:
+    const [showInput, setShowInput] = useState(false);
+    // track user input inside text input:
+    const [userInput, setUserInput] = useState("");
+
 
     const regex = /^[a-zA-Z]+$/;
 
@@ -49,8 +54,13 @@ const WordList = (props) => {
             // return if syllables are less than allowed syllables and returned result is not a number:
             return word.numSyllables <= props.allowedSyllables && word.word.match(regex)
         })
-        if (filteredForSyllables.length <= 20) {
+        if (!wordList[0]) {
+            setFilteredWordList([])
+            setShowInput(true)
+        } else if (filteredForSyllables.length <= 20) {
             setFilteredWordList(filteredForSyllables)
+            console.log("not enough")
+            setShowInput(false)
         } else {
             let shuffledWords = [];
             while (shuffledWords.length <= 19) {
@@ -60,6 +70,7 @@ const WordList = (props) => {
                 }
             }
             setFilteredWordList(shuffledWords)
+            setShowInput(false)
         }
     }, [wordList])
 
@@ -89,9 +100,11 @@ const WordList = (props) => {
                         }) 
                     : null
             }
-            {/* {
-                console.log(props.currentHaiku)
-            } */}
+            {
+                showInput
+                    ?<p>I'm totally an input</p>
+                    :null
+            }
         </>
     )
 }
