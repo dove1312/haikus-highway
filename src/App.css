@@ -59,7 +59,8 @@ button {
 ul {
   list-style: none;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 li {

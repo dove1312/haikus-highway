@@ -12,70 +12,44 @@ const DisplayHaiku = (props) => {
     const line2 = haikuLines[1];
     const line3 = haikuLines[2]
 
-    const handleClick= ()=> {        
-        line1.pop();
+    const handleClick = (whichLine) => {
+        whichLine.pop();
         props.removeFromHaiku(line1, line2, line3);
     }
 
-    const handleClick2 = ()=> {
-        line2.pop();
-        props.removeFromHaiku(line1,line2, line3);
+    const button1 = () => {
+        return (
+            <button
+                style={syllables <= 5 ? { display: "block" } : { display: "none" }}
+                onClick={() => { handleClick(line1) }} >
+                REMOVE
+            </button>
+        )
     }
 
-    const handleClick3 = () => {
-        line3.pop();
-        props.removeFromHaiku(line1, line2, line3);
+    const button2 = () => {
+        return (
+            <button
+                style={syllables > 5 && syllables <= 12 ? { display: "block" } : { display: "none" }}
+                onClick={() => { handleClick(line2) }} >
+                REMOVE
+            </button>
+        )
+    }
+
+    const button3 = () => {
+        return (
+            <button
+                style={syllables > 12 ? { display: "block" } : { display: "none" }}
+                onClick={() => { handleClick(line3) }}>
+                    REMOVE
+            </button>
+        )
     }
 
     return(
-        // <>
-        //     <h2>Here's Your Haiku!</h2>
-        //     <ul 
-        //         className="line1"
-        //         style= {syllables >=5 ? {color:"grey"} : {color:"black"}}
-        //     >
-        //         {haikuLines[0].map((word)=>{
-        //             return(
-        //             <li key={word.key}>{word.word}</li>
-        //             )
-        //         })
-        //         }
-        //         <button
-        //             style={syllables <= 5 ? {display:"block"} : {display:"none"}}
-        //             onClick={handleClick} >REMOVE</button>
-                
-        //     </ul>
-        //     <ul
-        //         className="line2"
-        //         style={syllables >= 12 ? { color: "grey" } : { color: "black" }}
-        //     >
-        //         {haikuLines[1].map((word) => {
-        //             return(
-        //             <li key={word.key}>{word.word}</li>
-        //             )
-        //         })
-        //         }
-        //         <button
-        //             style={syllables > 5 && syllables <=12 ? {display:"block"} : {display:"none"}}
-        //             onClick={handleClick2} >REMOVE</button>
-        //     </ul>
-        //     <ul
-        //         className="line3"
-        //         style={syllables == 17 ? { color: "grey" } : { color: "black" }}
-        //     >
-        //         {haikuLines[2].map((word) => {
-        //             return(
-        //             <li key={word.key}>{word.word}</li>
-        //             )
-        //         })
-        //         }
-        //     </ul>
-        //     <button 
-        //         style={syllables > 12 ? { display: "block" } : { display: "none" }}
-        //         onClick={handleClick}>Not happy with a word? get rid of it</button>
-        // </>
         
-        <HaikuReturn syllables={ syllables } haikuArray={ haikuLines } handleClick= {handleClick} handleClick2={handleClick2} handleClick3= {handleClick3}/>
+        <HaikuReturn syllables={ syllables } haikuArray={ haikuLines } button1={ button1 } button2={ button2 } button3={ button3 } />
     )
 }
 

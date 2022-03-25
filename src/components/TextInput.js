@@ -50,10 +50,10 @@ const TextInput = (props) => {
 
     return (
         <>
-            <form className='textInput' onSubmit={handleSubmit} id="form">
+            <form className={`textInputForm ${ props.className }`} onSubmit={handleSubmit} id="form">
                 <input onChange={handleChange} type="text" id="input" name="input" />
-                <label htmlFor="input"></label>
-                <button disabled={ disableButton(userInput) }>Submit</button>
+                <label className='sr-only' htmlFor="input">Enter a word for the haiku:</label>
+                <button className="submitButton" disabled={ disableButton(userInput) }>Submit</button>
             </form>
             {!userInput && (
                 <p>enter word</p>
