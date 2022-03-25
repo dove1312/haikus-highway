@@ -9,13 +9,13 @@ function Form() {
   const [spelling, setSpelling] = useState();
 
   useEffect(()=>{
-    console.log('useeffect running')
+    // console.log('useeffect running')
     if(userInput!==""){
       axios({
         url: `https://api.datamuse.com/words?sp=${userInput}&md=s`
       }).then(function(result){
         const {data} = result
-        console.log(data)
+        // console.log(data)
         setSyllableCount(result.data[0].numSyllables)
         setSpelling(data[0].word)
       })
@@ -58,7 +58,7 @@ function Form() {
     }
   }
 
-  console.log(syllableCount)
+  // console.log(syllableCount)
   // console.log(props)
   return (
     <>
@@ -86,3 +86,10 @@ function Form() {
 }
 
 export default Form;
+
+// NOTE: if importing <TextInput /> hand down "navigateFunction" as "customFunction"
+// and set allowedSyllables via props to 5
+// const navigate = useNavigate();
+// const navigateFunction = (userWord) => {
+//   navigate(`/haiku/${userWord}`)
+// }

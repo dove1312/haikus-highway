@@ -2,8 +2,6 @@ import liFromArray from '../reusableLogic/liFromArray';
 
 const HaikuReturn = (props) => {
 
-    console.log(props);
-
     return (
         <div className="haikuFlexContainer">
             <ul

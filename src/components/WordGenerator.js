@@ -18,12 +18,13 @@ const WordGenerator = (props) => {
     }
 
     //once currentSyllables is being tracked, figure out which line to push the incoming object to (object holding both the word and the key)
-    const whichLine = (wordParam, idParam, syllablesParam) => {
+    const whichLine = (wordParam, syllablesParam, idParam) => {
         //when the first word is received, the idParam has not yet been defined, so set the first value of "key" to be the currentSyllables value on initialization (which is 0)
         if (currentSyllables < 5) {
             let placeholder = currentHaiku;
             placeholder[0].push({ word:wordParam, key:idParam, syllables:syllablesParam  });
             setCurrentHaiku(placeholder);
+            console.log(currentHaiku);
         } else if (currentSyllables < 12 && currentSyllables >= 5) {
             let placeholder = currentHaiku;
             placeholder[1].push({ word: wordParam, key: idParam, syllables: syllablesParam });
@@ -36,8 +37,6 @@ const WordGenerator = (props) => {
             console.log('too many syllables');
         }
     }
-
-    // console.log(`current syllables is ${currentSyllables}`);
 
     //once current syllables has rendered, triggers setAllowedSyllables to a base # of available syllables (depending on line of poem), and subtracting current syllables from total amount 
     useEffect(()=> {
@@ -59,15 +58,29 @@ const WordGenerator = (props) => {
         setCurrentHaiku([[...haikuParam], [...haikuParam2],[...haikuParam3]]);
         // now need to figure out how to setSyllableCount-
             //maybe look at whichLine to see if we get the syllables to be included here as well - THEN we can setCurrentSYllables here to loop through all the words and add up the syllables
+
+        console.log(currentHaiku);
+        let sum = 0
+        currentHaiku.forEach((array) => {
+            for (let i = 0; i < array.length; i++) {
+                const syllables = array[i].syllables;
+                sum += syllables
+                // console.log(syllables, sum);
+            }
+            console.log(`the sum is ${sum}`);
+            setCurrentSyllables(sum);
+        })
     }
+
+    console.log(`current syllables is ${currentSyllables}`);
 
     //set currentWord to last word in the array - look at chosenWord- whenever chosenWord changes, it automatically does the API call - 
         //so we may need another new state (possibly in word generator, or that plus displayHaiku) - a state for previous word
             //word list- we can make a useEffect - props.previousWord ? MAYBE
             //so whenever previous word changes, set chosenWord to previous word (setPreviousWord(props.previousWords ))
 
-   console.log("what is being passed back down:");
-   console.log(currentHaiku);
+//    console.log("what is being passed back down:");
+//    console.log(currentHaiku);
 
     return (
         <div className="wordBox">
@@ -76,7 +89,7 @@ const WordGenerator = (props) => {
                 currentSyllables = { currentSyllables }
                 removeFromHaiku = { removeFromHaiku }
             />
-            {allowedSyllables != 0 ? <p>you have {allowedSyllables} left for this line</p>: null}
+            {allowedSyllables != 0 ? <p>you have {allowedSyllables} syllables left for this line</p>: null}
             <WordList 
                 currentHaiku={ currentHaiku } 
                 initialWord={ props.initialWord } 
@@ -96,3 +109,27 @@ export default WordGenerator;
 
 
 
+
+
+
+
+
+     // useEffect(()=>{
+    //      let sum = 0;
+    //      currentHaiku.forEach((array) => {
+
+    //           // let totalSum = 0;
+    //           for (let i = 0; i < array.length; i++) {
+    //                const syllables = array[i].syllables;
+    //                sum += syllables
+    //                // console.log(syllables, sum);
+    //           }
+
+    //           setCurrentSyllables(currentSyllables + sum);
+
+    //      })
+
+    //      // // console.log(currentSyllables);
+    //      // setAllowedSyllables(allowedSyllables - currentSyllables);
+    //      // console.log(currentSyllables);
+    // },[haikuLines]);
