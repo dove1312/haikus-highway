@@ -51,6 +51,7 @@ const WordList = (props) => {
         })
         if (filteredForSyllables.length <= 20) {
             setFilteredWordList(filteredForSyllables)
+            console.log("not enough")
         } else {
             let shuffledWords = [];
             while (shuffledWords.length <= 19) {
@@ -81,6 +82,7 @@ const WordList = (props) => {
                 filteredWordList[0]
                     ? 
                         filteredWordList.map((word) => {
+                            // console.log(word)
                             return (
                                 <li key={word.score}>
                                     <button onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
@@ -89,9 +91,9 @@ const WordList = (props) => {
                         }) 
                     : null
             }
-            {/* {
-                console.log(props.currentHaiku)
-            } */}
+            {
+
+            }
         </>
     )
 }
