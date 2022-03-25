@@ -29,7 +29,7 @@ const WordList = (props) => {
     useEffect(() => {
         setChosenWord(initialWord)
         // manually push first word to haiku
-        props.handleHaikuWords(initialWord);
+        props.handleHaikuWords(initialWord, props.currentSyllables);
         axios({
             url: "https://api.datamuse.com/words",
             params: {
@@ -38,6 +38,7 @@ const WordList = (props) => {
             }
         }).then((returnedData) => {
             // manually push first word syllables to 
+            // console.log(returnedData.data[0]);
             props.handleSyllables(returnedData.data[0].numSyllables)
         })
     }, [initialWord])
@@ -72,25 +73,26 @@ const WordList = (props) => {
     }, [wordList])
 
     // handle click on each word:
-    const handleClick = (wordParam, syllableParam) => {
+    const handleClick = (wordParam, syllableParam,idParam) => {
+        console.log(idParam)
         props.handleSyllables(syllableParam);
-        props.handleHaikuWords(wordParam);
+        props.handleHaikuWords(wordParam, idParam);
         setChosenWord(wordParam);
-        console.log(wordParam, syllableParam);
+        // console.log(wordParam, syllableParam, idParam)
     }
 
+    
 
     return (
         <>
-            <h3>I'm the words!</h3>
+            {/* <h3>I'm the words!</h3> */}
             {
                 filteredWordList[0]
                     ? 
                         filteredWordList.map((word) => {
-                            // console.log(word)
                             return (
                                 <li key={word.score}>
-                                    <button onClick={function () { handleClick(word.word, word.numSyllables) }}>{word.word}</button>
+                                    <button onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
                                 </li>
                             )
                         }) 
