@@ -16,8 +16,10 @@ const TextInput = (props) => {
                 setSpelling("")
                 const { data } = result
                 console.log(data)
-                setSyllableCount(result.data[0].numSyllables)
-                setSpelling(data[0].word)
+                if (data[0]) {
+                    setSyllableCount(result.data[0].numSyllables)
+                    setSpelling(data[0].word)
+                }
             })
         }
     }, [userInput])
@@ -50,7 +52,6 @@ const TextInput = (props) => {
 
     return (
         <>
-            <h2>Enter a word to get started:</h2>
             <form onSubmit={handleSubmit} id="form">
                 <input onChange={handleChange} type="text" id="input" name="input" />
                 <label htmlFor="input"></label>
