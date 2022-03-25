@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import HaikuReturn from './HaikuReturn';
-
+import { Link } from 'react-router-dom';
 
 const DisplayHaiku = (props) => {
     //define the variables to hold syllables and haiku to be able to map through and display
@@ -19,11 +19,20 @@ const DisplayHaiku = (props) => {
 
     const button1 = () => {
         return (
+            <>
             <button
-                style={syllables <= 5 ? { display: "block" } : { display: "none" }}
+                style={syllables <= 5 && line1.length > 1 ? { display: "block" } : { display: "none" }}
                 onClick={() => { handleClick(line1) }} >
                 REMOVE
             </button>
+            <Link to="/">
+                    <button
+                        style={line1.length == 1 ? { display: "block" } : { display: "none" }}>
+                        Start Again
+                    </button>
+            </Link>
+            
+            </>
         )
     }
 
