@@ -78,7 +78,7 @@ const WordList = (props) => {
     const handleClick = (wordParam, syllableParam,idParam) => {
         console.log(idParam)
         props.handleSyllables(syllableParam);
-        props.handleHaikuWords(wordParam, idParam);
+        props.handleHaikuWords(wordParam, idParam, syllableParam);
         setChosenWord(wordParam);
         // console.log(wordParam, syllableParam, idParam)
     }

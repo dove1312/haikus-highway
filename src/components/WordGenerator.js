@@ -18,19 +18,19 @@ const WordGenerator = (props) => {
     }
 
     //once currentSyllables is being tracked, figure out which line to push the incoming object to (object holding both the word and the key)
-    const whichLine = (wordParam, idParam) => {
+    const whichLine = (wordParam, idParam, syllablesParam) => {
         //when the first word is received, the idParam has not yet been defined, so set the first value of "key" to be the currentSyllables value on initialization (which is 0)
         if (currentSyllables < 5) {
             let placeholder = currentHaiku;
-            placeholder[0].push({ word:wordParam, key:idParam });
+            placeholder[0].push({ word:wordParam, key:idParam, syllables:syllablesParam  });
             setCurrentHaiku(placeholder);
         } else if (currentSyllables < 12 && currentSyllables >= 5) {
             let placeholder = currentHaiku;
-            placeholder[1].push({ word: wordParam, key:idParam });
+            placeholder[1].push({ word: wordParam, key: idParam, syllables: syllablesParam });
             setCurrentHaiku(placeholder);
         } else if (currentSyllables >= 12) {
             let placeholder = currentHaiku;
-            placeholder[2].push({ word:wordParam, key:idParam });
+            placeholder[2].push({ word: wordParam, key: idParam, syllables: syllablesParam });
             setCurrentHaiku(placeholder);
         } else {
             console.log('too many syllables');
