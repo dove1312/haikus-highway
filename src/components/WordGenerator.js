@@ -11,6 +11,8 @@ const WordGenerator = (props) => {
     const [currentSyllables, setCurrentSyllables] = useState(0);
     //allowed syllables will be used to display the # of syllables left on the side for user help 
     const [allowedSyllables, setAllowedSyllables] = useState(17);
+    //state to track what the last word in the array is 
+    const [lastWord, setLastWord]= useState("");
 
     //track total number of syllables used as each word is added to the currentHaiku array
     const trackingSyllableCount = (numOfSyllables) => {
@@ -19,7 +21,6 @@ const WordGenerator = (props) => {
 
     //once currentSyllables is being tracked, figure out which line to push the incoming object to (object holding both the word and the key)
     const whichLine = (wordParam, syllablesParam, idParam) => {
-        //when the first word is received, the idParam has not yet been defined, so set the first value of "key" to be the currentSyllables value on initialization (which is 0)
         if (currentSyllables < 5) {
             let placeholder = currentHaiku;
             placeholder[0].push({ word:wordParam, key:idParam, syllables:syllablesParam  });
@@ -74,13 +75,13 @@ const WordGenerator = (props) => {
 
     console.log(`current syllables is ${currentSyllables}`);
 
-    //set currentWord to last word in the array - look at chosenWord- whenever chosenWord changes, it automatically does the API call - 
-        //so we may need another new state (possibly in word generator, or that plus displayHaiku) - a state for previous word
-            //word list- we can make a useEffect - props.previousWord ? MAYBE
-            //so whenever previous word changes, set chosenWord to previous word (setPreviousWord(props.previousWords ))
+    //need to be able to set lastWord to be the last word inside of the currentHaiku array
+        //possibly pull chosenWord - but once you remove, chosen word won't be relevant 
+        //maybe .find() method, or .lastIndexOf() and just search for "word"- since all objects will have the property "key" inside - but does.find look for property  names?
+        //if/else statements based on syllables 0 then store last item of array in variable (lastitem = array(array.length-1))
+    //function needs to setLastWord to whichever word we pull from array 
+    //does this now need a useEffect- trigger upon change of currentHaiku
 
-//    console.log("what is being passed back down:");
-//    console.log(currentHaiku);
 
     return (
         <div className="wordBox">
@@ -95,6 +96,7 @@ const WordGenerator = (props) => {
                 initialWord={ props.initialWord } 
                 handleSyllables={ trackingSyllableCount } 
                 handleHaikuWords={ whichLine } 
+                // handleLastWord = { findLastWord }
                 allowedSyllables = { allowedSyllables }
                 currentSyllables={ currentSyllables }
             />
@@ -114,22 +116,8 @@ export default WordGenerator;
 
 
 
-     // useEffect(()=>{
-    //      let sum = 0;
-    //      currentHaiku.forEach((array) => {
-
-    //           // let totalSum = 0;
-    //           for (let i = 0; i < array.length; i++) {
-    //                const syllables = array[i].syllables;
-    //                sum += syllables
-    //                // console.log(syllables, sum);
-    //           }
-
-    //           setCurrentSyllables(currentSyllables + sum);
-
-    //      })
-
-    //      // // console.log(currentSyllables);
-    //      // setAllowedSyllables(allowedSyllables - currentSyllables);
-    //      // console.log(currentSyllables);
-    // },[haikuLines]);
+//create a function to be called inside WordList - when the chosen word is passed up to Word Generator, the state lastWord is updated
+    // const findLastWord = (previousWord)=> {
+    //     setLastWord(previousWord);
+    //     //now need to think about adding in useEffect somehow and still be able to pass the function down - currently updating the last word in state when adding words, but not when REMOVING WORDS - needs a dependency array? 
+    // }

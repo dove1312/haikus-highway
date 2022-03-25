@@ -29,7 +29,7 @@ const WordList = (props) => {
 
     const handleNewWord = (word) => {
         //0 refers to the first key value for first word
-        //NEED TO UPDATE SYLLABLE COUNT HERE - IT ISN'T REGISTERING
+        ///////NEED TO UPDATE SYLLABLE COUNT HERE - IT ISN'T REGISTERING////
         props.handleHaikuWords(word, 2, 0);
         axios({
             url: "https://api.datamuse.com/words",
@@ -64,6 +64,9 @@ const WordList = (props) => {
     // call API for each chosen word:
     useEffect(() => {
         wordListApiCall(chosenWord, setWordList)
+        ///CAN I PULL THE CHOSEN WORD FROM HERE? - don't think so 
+        // console.log(chosenWord)
+        // props.handleLastWord(chosenWord);
     }, [chosenWord])
     
     // filter returnedWordList:
@@ -94,7 +97,6 @@ const WordList = (props) => {
 
     // handle click on each word:
     const handleClick = (wordParam, syllableParam,idParam) => {
-        // console.log(idParam)
         props.handleSyllables(syllableParam);
         props.handleHaikuWords(wordParam, syllableParam, idParam);
         setChosenWord(wordParam);
