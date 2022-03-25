@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import HaikuReturn from './HaikuReturn';
 
 
 const DisplayHaiku = (props) => {
@@ -21,54 +22,60 @@ const DisplayHaiku = (props) => {
         props.removeFromHaiku(line1,line2, line3);
     }
 
+    const handleClick3 = () => {
+        line3.pop();
+        props.removeFromHaiku(line1, line2, line3);
+    }
+
     return(
-        <>
-            <h2>Here's Your Haiku!</h2>
-            <ul 
-                className="line1"
-                style= {syllables >=5 ? {color:"grey"} : {color:"black"}}
-            >
-                {haikuLines[0].map((word)=>{
-                    return(
-                    <li key={word.key}>{word.word}</li>
-                    )
-                })
-                }
-                <button
-                    style={syllables <= 5 ? {display:"block"} : {display:"none"}}
-                    onClick={handleClick} >REMOVE</button>
+        // <>
+        //     <h2>Here's Your Haiku!</h2>
+        //     <ul 
+        //         className="line1"
+        //         style= {syllables >=5 ? {color:"grey"} : {color:"black"}}
+        //     >
+        //         {haikuLines[0].map((word)=>{
+        //             return(
+        //             <li key={word.key}>{word.word}</li>
+        //             )
+        //         })
+        //         }
+        //         <button
+        //             style={syllables <= 5 ? {display:"block"} : {display:"none"}}
+        //             onClick={handleClick} >REMOVE</button>
                 
-            </ul>
-            <ul
-                className="line2"
-                style={syllables >= 12 ? { color: "grey" } : { color: "black" }}
-            >
-                {haikuLines[1].map((word) => {
-                    return(
-                    <li key={word.key}>{word.word}</li>
-                    )
-                })
-                }
-                <button
-                    style={syllables > 5 && syllables <=12 ? {display:"block"} : {display:"none"}}
-                    onClick={handleClick2} >REMOVE</button>
-            </ul>
-            <ul
-                className="line3"
-                style={syllables == 17 ? { color: "grey" } : { color: "black" }}
-            >
-                {haikuLines[2].map((word) => {
-                    return(
-                    <li key={word.key}>{word.word}</li>
-                    )
-                })
-                }
-            </ul>
-            <button 
-                style={syllables > 12 ? { display: "block" } : { display: "none" }}
-                onClick={handleClick}>Not happy with a word? get rid of it</button>
-        </>
+        //     </ul>
+        //     <ul
+        //         className="line2"
+        //         style={syllables >= 12 ? { color: "grey" } : { color: "black" }}
+        //     >
+        //         {haikuLines[1].map((word) => {
+        //             return(
+        //             <li key={word.key}>{word.word}</li>
+        //             )
+        //         })
+        //         }
+        //         <button
+        //             style={syllables > 5 && syllables <=12 ? {display:"block"} : {display:"none"}}
+        //             onClick={handleClick2} >REMOVE</button>
+        //     </ul>
+        //     <ul
+        //         className="line3"
+        //         style={syllables == 17 ? { color: "grey" } : { color: "black" }}
+        //     >
+        //         {haikuLines[2].map((word) => {
+        //             return(
+        //             <li key={word.key}>{word.word}</li>
+        //             )
+        //         })
+        //         }
+        //     </ul>
+        //     <button 
+        //         style={syllables > 12 ? { display: "block" } : { display: "none" }}
+        //         onClick={handleClick}>Not happy with a word? get rid of it</button>
+        // </>
         
+        <HaikuReturn syllables={ syllables } haikuArray={ haikuLines } handleClick= {handleClick} handleClick2={handleClick2} handleClick3= {handleClick3}/>
     )
 }
 
