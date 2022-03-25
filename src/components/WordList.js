@@ -30,7 +30,6 @@ const WordList = (props) => {
     const handleNewWord = (word) => {
         //0 refers to the first key value for first word
         ///////NEED TO UPDATE SYLLABLE COUNT HERE - IT ISN'T REGISTERING////
-        props.handleHaikuWords(word, 2, 0);
         axios({
             url: "https://api.datamuse.com/words",
             params: {
@@ -39,6 +38,7 @@ const WordList = (props) => {
             }
         }).then((returnedData) => {
             props.handleSyllables(returnedData.data[0].numSyllables)
+            props.handleHaikuWords(word, returnedData.data[0].numSyllables, props.currentSyllables);
         })
     }
     // once we've received the initial word from the user set chosen word manually ONCE:
