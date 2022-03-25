@@ -1,6 +1,6 @@
 import Form from './Form.js';
 
-function Home(props) {
+function Home() {
   return (
     <>
       <Form />
