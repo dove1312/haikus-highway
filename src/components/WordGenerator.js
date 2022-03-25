@@ -13,6 +13,8 @@ const WordGenerator = (props) => {
     const [allowedSyllables, setAllowedSyllables] = useState(17);
     //state to track what the last word in the array is 
     const [lastWord, setLastWord]= useState("");
+    // test test
+    const [wordDeleted, setWordDeleted] = useState(0)
 
     //track total number of syllables used as each word is added to the currentHaiku array
     const trackingSyllableCount = (numOfSyllables) => {
@@ -71,6 +73,7 @@ const WordGenerator = (props) => {
             console.log(`the sum is ${sum}`);
             setCurrentSyllables(sum);
         })
+        setWordDeleted(wordDeleted + 1)
     }
 
     console.log(`current syllables is ${currentSyllables}`);
@@ -81,6 +84,25 @@ const WordGenerator = (props) => {
         //if/else statements based on syllables 0 then store last item of array in variable (lastitem = array(array.length-1))
     //function needs to setLastWord to whichever word we pull from array 
     //does this now need a useEffect- trigger upon change of currentHaiku
+
+    // MAYBE??? :
+    useEffect(() => {
+        if (wordDeleted) {
+            let finalWord
+            if (currentHaiku[2][0]) {
+                finalWord = currentHaiku[2].slice(-1);
+                console.log(lastWord)
+            } else if (currentHaiku[1][0]) {
+                finalWord = currentHaiku[1].slice(-1);
+                console.log(lastWord)
+            } else {
+                finalWord = currentHaiku[0].slice(-1);
+                console.log(lastWord)
+            }
+        }
+    }, [wordDeleted])
+
+    // can set a State called wordDeleted that just increments when words are removed - its only purpose would be to trigger this? maybe
 
 
     return (
