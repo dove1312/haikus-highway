@@ -12,7 +12,7 @@ function Form() {
   return (
     <div>
       <h2>Enter a word to get started:</h2>
-      <TextInput allowedSyllables="5" customFunction={navigateFunction} />
+      <TextInput className="homePage" allowedSyllables="5" customFunction={navigateFunction} />
     </div>
   )
 }
