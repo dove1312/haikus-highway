@@ -9,6 +9,11 @@ const WordList = (props) => {
     const [wordList, setWordList] = useState([]);
     const [filteredWordList, setFilteredWordList] = useState([])
     const [initialWord, setInitialWord] = useState("");
+    // set as true when no returned words to show text input:
+    const [showInput, setShowInput] = useState(false);
+    // track user input inside text input:
+    const [userInput, setUserInput] = useState("");
+
 
     const regex = /^[a-zA-Z]+$/;
 
@@ -48,7 +53,10 @@ const WordList = (props) => {
             // return if syllables are less than allowed syllables and returned result is not a number:
             return word.numSyllables <= props.allowedSyllables && word.word.match(regex)
         })
-        if (filteredForSyllables.length <= 20) {
+        if (!wordList[0]) {
+            setFilteredWordList([])
+            setShowInput(true)
+        } else if (filteredForSyllables.length <= 20) {
             setFilteredWordList(filteredForSyllables)
             console.log("not enough")
         } else {
@@ -68,7 +76,7 @@ const WordList = (props) => {
         props.handleSyllables(syllableParam);
         props.handleHaikuWords(wordParam);
         setChosenWord(wordParam);
-        console.log(wordParam, syllableParam)
+        console.log(wordParam, syllableParam);
     }
 
 
@@ -82,14 +90,16 @@ const WordList = (props) => {
                             // console.log(word)
                             return (
                                 <li key={word.score}>
-                                    <button onClick={function () { handleClick(word.word, word.numSyllables) }} >{word.word}</button>
+                                    <button onClick={function () { handleClick(word.word, word.numSyllables) }}>{word.word}</button>
                                 </li>
                             )
                         }) 
                     : null
             }
             {
-
+                showInput
+                    ?<p>I'm totally an input</p>
+                    :null
             }
         </>
     )
