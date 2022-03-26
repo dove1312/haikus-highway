@@ -15,7 +15,6 @@ function Form() {
         url: `https://api.datamuse.com/words?sp=${userInput}&md=s`
       }).then(function(result){
         const {data} = result
-        console.log(data)
         setSyllableCount(result.data[0].numSyllables)
         setSpelling(data[0].word)
       })
