@@ -53,7 +53,7 @@ const TextInput = (props) => {
 
     return (
         <>
-            <form className={`textInputForm ${ props.className }`} onSubmit={handleSubmit} id="form" spellCheck="true">
+            <form className={`textInputForm ${ props.className }`} onSubmit={handleSubmit} id="form">
                 <input onChange={handleChange} type="text" id="input" name="input" />
                 <label className='sr-only' htmlFor="input">Enter a word for the haiku:</label>
                 <button className="submitButton" disabled={ disableButton(userInput) }>Submit</button>
@@ -62,7 +62,7 @@ const TextInput = (props) => {
                 <p>Within allowed syllable count.</p>
             )} */}
             {/* count > 2 is test for now, update to 5 later */}
-            {syllableCount > props.allowedSyllables ? (
+            {syllableCount > props.allowedSyllables && userInput ? (
                 <p>Too many syllables!</p>
             ) : (<p>Within allowed syllable count</p>)}
             {/* !/^[a-z]+$/i.test(userInput) && */}
