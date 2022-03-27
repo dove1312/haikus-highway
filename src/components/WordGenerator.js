@@ -15,6 +15,7 @@ const WordGenerator = (props) => {
     const [lastWord, setLastWord]= useState("");
     //state to count the clicks of the remove button to trigger the re-render of lastWord
     const [removeClicks, setRemoveClicks]= useState(0);
+    
 
     //track total number of syllables used as each word is added to the currentHaiku array
     const trackingSyllableCount = (numOfSyllables) => {
@@ -114,7 +115,8 @@ const WordGenerator = (props) => {
                 newWord = {lastWord}
             />
             {
-                currentSyllables === 17 ? <SaveYourHaiku /> : null
+                currentSyllables === 17 ? <SaveYourHaiku
+                    currentHaiku = {currentHaiku}/> : null
             }
         </div>
     )
