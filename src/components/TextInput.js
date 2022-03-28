@@ -63,11 +63,11 @@ const TextInput = (props) => {
             )} */}
             {/* count > 2 is test for now, update to 5 later */}
             {syllableCount > props.allowedSyllables && userInput ? (
-                <p>Too many syllables!</p>
-            ) : (<p>Within allowed syllable count</p>)}
+                <p className='warning'>Too many syllables!</p>
+            ) : (<p className='secondaryWarning'>Within allowed syllable count</p>)}
             {/* !/^[a-z]+$/i.test(userInput) && */}
             {stringDoesNotPass(userInput) && userInput && (
-                <p>No special characters, numbers or spaces please!</p>
+                <p className='warning'>No special characters, numbers or spaces please!</p>
             )}
             {/* {syllableCount > 5 ? (<p>too many syllables!!!</p>) : (<p>just the right amount of syllables</p>)} */}
             {/* <p>checking if spellcheck is working: {spelling}</p> */}
