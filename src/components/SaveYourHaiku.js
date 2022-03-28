@@ -7,19 +7,19 @@ const SaveYourHaiku = (props)=>{
      const [wordsOnly, setWordsOnly]=useState([]);
      const test = ["happy", "sad", "life", "homework", "sucks", "i","hate", "errors"]
 
-     const line1 = props.currentHaiku[0];
-     const line2= props.currentHaiku[1];
-     const line3=props.currentHaiku[2];
+     // const line1 = props.currentHaiku[0];
+     // const line2= props.currentHaiku[1];
+     // const line3=props.currentHaiku[2];
 
-     line1.map((word)=>{
-          setWordsOnly(wordsOnly.push(word.word))
-     })
-     line2.map((word)=> {
-          setWordsOnly(wordsOnly.push(word.word))
-     })
-     line3.map((word)=>{
-          setWordsOnly(wordsOnly.push(word.word));
-     })
+     // line1.map((word)=>{
+     //      setWordsOnly(wordsOnly.push(word.word))
+     // })
+     // line2.map((word)=> {
+     //      setWordsOnly(wordsOnly.push(word.word))
+     // })
+     // line3.map((word)=>{
+     //      setWordsOnly(wordsOnly.push(word.word));
+     // })
 
      console.log(wordsOnly);
      //functionality for calling firebase included here
