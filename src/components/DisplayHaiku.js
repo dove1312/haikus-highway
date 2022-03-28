@@ -27,8 +27,8 @@ const DisplayHaiku = (props) => {
             </button>
             <Link to="/">
                     <button
-                        className="restartButton"
-                        style={line1.length == 1 ? { display: "block" } : { display: "none" }}>
+                        className="restartButton" 
+                        style={line1.length == 1 && syllables <= 5 ? { display: "block" } : { display: "none" }}>
                         Start Over
                     </button>
             </Link>
