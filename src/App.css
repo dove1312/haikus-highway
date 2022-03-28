@@ -308,7 +308,33 @@ footer a{
   .mobileNav {
     display: block;
   }
+  .removeButton,
+  .restartButton {
+    bottom: -40px;
+    right: -20px;
+    background-color: #969680;
+    border: 2px solid #7e7e6c;
+    border-radius: 3px;
+  }
+  .haikuContainer {
+    padding: 40px 40px 60px;
+  }
+}
 
+@media (max-width: 700px) {
+  .wrapper {
+    width: 90%;
+  }
+  .menuIcon {
+    right: 3%;
+  }
+  .haikuContainer {
+    padding: 40px 20px 60px;
+  }
+  .removeButton,
+  .restartButton {
+    right: 0px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -316,8 +342,46 @@ footer a{
     font-size: 1.2rem;
   }
   nav {
-  border-bottom: none;
+  border-bottom: none;  
+  }
+  .menuIcon {
+    right: 0;
+  }
+  .hamburgerMenuIcon {
+    width: 45px;
+  }
+  .haikuContainer {
+    margin: 0;
+  }
+  .haikuLine li {
+    font-size: 1.1rem;
+  }
 }
+
+@media (max-width: 400px) {
+  .wrapper {
+    width: 100%;
+  }
+  h1 {
+    padding-left: 5%;
+  }
+  .haikuContainer {
+    padding: 10px 10px 40px;
+  }
+  .haikuLine li {
+    margin: 10px 3px;
+  }
+  .removeButton,
+  .restartButton {
+    bottom: -30px;
+  }
+  .syllablesLeft {
+    font-size: 0.8rem;
+    margin: 10px 5px;
+  }
+  .wordListContainer {
+    margin: 10px;
+  }
 }
 
 /* PROJECT NOTES --- */
