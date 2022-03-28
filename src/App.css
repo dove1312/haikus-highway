@@ -83,7 +83,11 @@ li {
 }
 
 main {
-  height: 80vh;
+  min-height: 85vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
 }
 
 /* NAV MENU STYLING */
@@ -188,12 +192,6 @@ nav .wrapper {
 }
 
 /* Home Page Styling */
-.homePage{
-  height: 100%;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
 .initialWordForm{
   display:flex;
   flex-direction: column;
@@ -224,9 +222,27 @@ nav .wrapper {
 .haikuFlexContainer {
   height: 150px;
 }
+
+.haikuLine {
+  position:relative;
+}
+
 .haikuLine li {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin: 3px;
+}
+
+.haikuLine button {
+  position:absolute;
+  right: 0;
+  top: 50%;
+  transform:translateY(-50%);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding-top: 5px;
+  background-color:#CDC4B9;
+  border: 1px solid #545152;
+  display:block;
 }
 
 /* Styling for completed haikus --- */
@@ -262,6 +278,7 @@ footer {
   color: #CDC4B9;
   text-align: center;
   padding: 5px;
+  margin-top: 10px;
 }
 
 footer p {
