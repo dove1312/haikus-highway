@@ -3,9 +3,10 @@ import { getDatabase, ref, push } from 'firebase/database';
 import { useState } from 'react';
 
 const SaveYourHaiku = (props)=>{
+     console.log(props.currentHaiku);
 
-     const [wordsOnly, setWordsOnly]=useState([]);
-     const test = ["happy", "sad", "life", "homework", "sucks", "i","hate", "errors"]
+     // const [wordsOnly, setWordsOnly]=useState([]);
+     // const test = ["happy", "sad", "life", "homework", "sucks", "i","hate", "errors"]
 
      // const line1 = props.currentHaiku[0];
      // const line2= props.currentHaiku[1];
@@ -21,14 +22,14 @@ const SaveYourHaiku = (props)=>{
      //      setWordsOnly(wordsOnly.push(word.word));
      // })
 
-     console.log(wordsOnly);
+     // console.log(wordsOnly);
      //functionality for calling firebase included here
      const database = getDatabase(firebase);
      const dbRef = ref(database);
      
 
      const handleClick = ()=> {
-          const firebaseHaiku = push(dbRef, test);
+          const firebaseHaiku = push(dbRef, props.currentHaiku);
           console.log(dbRef);
           console.log(firebaseHaiku);
      }

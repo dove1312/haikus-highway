@@ -1,50 +1,52 @@
 import firebase from './firebase';
-import { getDatabase, ref, onValue } from 'firebase/database';
-
-import { useState, useEffect } from 'react';
-
+import HaikuReturn from "./HaikuReturn";
+import { getDatabase, ref, onValue } from "firebase/database"
+import { useState, useEffect } from "react";
 
 const SavedHaikus = () => {
 
-    const [haikus, setHaikus]=useState([]);
+    const [haikuList, setHaikuList] = useState([])
 
-    useEffect( ()=>{
+
+    useEffect(() => {
         const database = getDatabase(firebase);
-        const dbRef = ref(database)
+        const dbRef = ref(database);
 
         onValue(dbRef, (response) => {
-            const newState=[];
-            const data= response.val()
-            for(let individual in data){
-                newState.push(data[individual]);
+            const newState = [];
+            const data = response.val()
+            for (let key in data) {
+                newState.push({ key: key, info: data[key] })
             }
-            setHaikus(newState);
+            setHaikuList(newState);
         })
-    },[])
 
-    console.log(haikus);
-    
+    }, [])
+
+    console.log(haikuList);
 
     return (
-        <>
-        <h1>Haikus Go Here</h1>
-        {
-            haikus.map((individualHaiku)=>{
-                console.log(individualHaiku);
-                return(
-                    <ul>
-                        {
-                            individualHaiku.map((word)=> {
-                                return(
-                                    <li>{word}</li>
-                                )
-                            })
-                        }
-                    </ul>
-                )
-            })
-        }
-        </>
+            <section className="savedHaikus">
+                <div className='wrapper'>
+                    <div className="haikus">
+                        <h2>Saved Haikus</h2>
+                        <ul className="haikuList">
+                            {
+                                haikuList[0]
+                                    ? haikuList.map((haiku) => {
+                                        return (
+                                            <li key={ haiku.key }>
+                                                <HaikuReturn haikuArray={haiku.info} />
+                                            </li>
+                                        )
+                                    })
+                                    : null
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
     )
 }
 
