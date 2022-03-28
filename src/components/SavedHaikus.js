@@ -6,20 +6,20 @@ const SavedHaikus = () => {
 
     const [haikuList, setHaikuList] = useState([])
 
-    // useEffect(() => {
-    //     const database = getDatabase(firebase);
-    //     const dbRef = ref(database);
+    useEffect(() => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database);
 
-    //     onValue(dbRef, (response) => {
-    //         const newState = [];
-    //         const data = response.val()
-    //         for (let key in data) {
-    //             newState.push({ key: key, info: data[key] })
-    //         }
-    //         setHaikuList(newState);
-    //     })
+        onValue(dbRef, (response) => {
+            const newState = [];
+            const data = response.val()
+            for (let key in data) {
+                newState.push({ key: key, info: data[key] })
+            }
+            setHaikuList(newState);
+        })
 
-    // }, [])
+    }, [])
 
     return (
             <section className="savedHaikus">
