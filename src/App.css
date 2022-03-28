@@ -64,23 +64,32 @@ li {
 }
 
 /* NAV MENU STYLING */
-h1 {
-  color: #545152;
+nav {
+  background-color: #BCBCA6;
+  border-bottom: 2px solid #969680;
 }
 nav .wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 80px;
 }
 .navButton {
   font-weight: 600;
+  padding: 10px;
 }
-.haikuLine li {
 
-}
+
+
+/* Styling for completed haikus --- */
 .lineComplete li {
   font-weight: 400;
   color: #22261e;
 }
+
+/* MEDIA QUERIES --- */
+
+/* menu will need to switch to mobile menu at ~800px */
 
 
 /* PROJECT NOTES --- */
@@ -88,3 +97,5 @@ nav .wrapper {
 /* DARK GREY: #545152 */
 /* SAND/LIGHT BROWN: #CDC4B9 */
 /* SAGE GREEN: #BCBCA6 */
+
+/* TESTED --- #BCBCA6 (deeper sage green) is accessible with #F7F8F1 (off-white) text */

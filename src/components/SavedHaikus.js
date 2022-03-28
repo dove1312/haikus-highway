@@ -25,7 +25,7 @@ const SavedHaikus = () => {
             <section className="savedHaikus">
                 <div className='wrapper'>
                     <div className="haikus">
-                        <h1>Haikus Go Here</h1>
+                        <h2>Saved Haikus</h2>
                         <ul className="haikuList">
                             {
                                 haikuList[0]
