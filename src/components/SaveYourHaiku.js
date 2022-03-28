@@ -3,8 +3,6 @@ import { getDatabase, ref, push } from 'firebase/database';
 import { useState } from 'react';
 
 const SaveYourHaiku = (props)=>{
-
-     //functionality for calling firebase included here
      const database = getDatabase(firebase);
      const dbRef = ref(database);
      

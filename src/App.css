@@ -41,6 +41,20 @@ h1 {
 input, button.submitButton {
   border: 2px #545152 solid;
   background-color: #CDC4B9;
+  transition: all 0.4s;
+}
+
+button.submitButton{
+  text-transform: uppercase;
+}
+
+input:hover,
+input:focus,
+button.submitButton:hover,
+button.submitButton:focus {
+  background-color: #dfd5ca;
+  outline:none;
+  border:2px #dfd5ca solid;
 }
 
 input {
@@ -61,6 +75,15 @@ ul {
 
 li {
   list-style: none;
+}
+
+.appContainer {
+  min-height: 100vh;
+  position:relative;
+}
+
+main {
+  height: 80vh;
 }
 
 /* NAV MENU STYLING */
@@ -206,10 +229,88 @@ nav .wrapper {
   letter-spacing: 0.06rem;
 }
 
+/* Home Page Styling */
+.homePage {
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.initialWordForm{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  margin-bottom: 60px;
+}
+.initialWordForm input{
+  margin: 10px 10px 10px 0;
+  width: 280px;
+}
+
+.definition {
+  max-width: 850px;
+  margin: 0 auto;
+}
+.definition span {
+  letter-spacing: 5px;
+}
+/* 
+/* Results Page */
+/* .resultsPage {
+  height: 100%;
+  display:flex;
+  align-items:center;
+}
+
+.haikuFlexContainer {
+  height: 150px;
+}
+.haikuLine li {
+  font-size: 1.5rem;
+  margin: 3px;
+} */ */
+
 /* Styling for completed haikus --- */
 .lineComplete li {
   font-weight: 400;
   color: #1e211c;
+}
+
+/* Saved Haiku Page */
+.savedHaikus h2 {
+  text-align: center;
+  margin:40px 0;
+}
+
+.haikuList {
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.individualPoem {
+  background: #CDC4B9;
+  padding: 20px;
+  margin: 20px 0;
+  width: calc((100% / 2) - 30px);
+}
+/* Footer */
+
+footer {
+  position:absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #545152;
+  color: #CDC4B9;
+  text-align: center;
+  padding: 5px;
+}
+
+footer p {
+  padding: 2px;
+}
+
+footer a{
+  color: #CDC4B9;
 }
 
 /* MEDIA QUERIES --- */

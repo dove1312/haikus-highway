@@ -62,7 +62,7 @@ const WordGenerator = (props) => {
         // now need to figure out how to setSyllableCount-
         //maybe look at whichLine to see if we get the syllables to be included here as well - THEN we can setCurrentSYllables here to loop through all the words and add up the syllables
 
-        console.log(currentHaiku);
+        // console.log(currentHaiku);
         let sum = 0
         currentHaiku.forEach((array) => {
             for (let i = 0; i < array.length; i++) {
@@ -70,13 +70,13 @@ const WordGenerator = (props) => {
                 sum += syllables
                 // console.log(syllables, sum);
             }
-            console.log(`the sum is ${sum}`);
+            // console.log(`the sum is ${sum}`);
             setCurrentSyllables(sum);
         })
         setRemoveClicks(removeClicks + 1);
     }
 
-    console.log(`current syllables is ${currentSyllables}`);
+    // console.log(`current syllables is ${currentSyllables}`);
 
     //pull the last word of the last array, and set that word as the lastWord state
     useEffect(() => {

@@ -7,6 +7,7 @@ const SavedHaikus = () => {
 
     const [haikuList, setHaikuList] = useState([])
 
+
     useEffect(() => {
         const database = getDatabase(firebase);
         const dbRef = ref(database);
@@ -23,6 +24,7 @@ const SavedHaikus = () => {
     }, [])
 
     return (
+        <main>
             <section className="savedHaikus">
                 <div className='wrapper'>
                     <div className="haikus">
@@ -32,7 +34,7 @@ const SavedHaikus = () => {
                                 haikuList[0]
                                     ? haikuList.map((haiku) => {
                                         return (
-                                            <li key={ haiku.key }>
+                                            <li key={haiku.key} className= "individualPoem">
                                                 <HaikuReturn haikuArray={haiku.info} />
                                             </li>
                                         )
@@ -43,6 +45,7 @@ const SavedHaikus = () => {
                     </div>
                 </div>
             </section>
+        </main>
 
     )
 }

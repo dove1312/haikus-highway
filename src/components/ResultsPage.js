@@ -6,11 +6,14 @@ const ResultsPage=()=> {
      const { userWord } = useParams();
 
      return(
-          <section className="resultsPage">
-               <div className="wrapper">
-                    <WordGenerator initialWord={userWord} />
-               </div>
-          </section>
+          <main>
+               <section className="resultsPage">
+                    <div className="wrapper">
+                         <WordGenerator initialWord={userWord} />
+                    </div>
+               </section>
+          </main>
+          
      )
 }
 
