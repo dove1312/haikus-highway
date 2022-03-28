@@ -9,8 +9,6 @@ const SaveYourHaiku = (props)=>{
 
      const handleClick = ()=> {
           const firebaseHaiku = push(dbRef, props.currentHaiku);
-          console.log(dbRef);
-          console.log(firebaseHaiku);
      }
 
 

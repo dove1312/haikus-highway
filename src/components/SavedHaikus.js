@@ -1,5 +1,5 @@
-import firebase from './firebase';
 import HaikuReturn from "./HaikuReturn";
+import firebase from "./firebase";
 import { getDatabase, ref, onValue } from "firebase/database"
 import { useState, useEffect } from "react";
 
@@ -22,8 +22,6 @@ const SavedHaikus = () => {
         })
 
     }, [])
-
-    // console.log(haikuList);
 
     return (
         <main>

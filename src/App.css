@@ -40,8 +40,10 @@ h1 {
 
 input, button.submitButton {
   border: 2px #545152 solid;
-  background-color: #CDC4B9;
-  transition: all 0.4s;
+  /* background-color: #CDC4B9; */
+  background-color: #F7F8F1;
+  color: #545152;
+  transition: all 0.6s;
 }
 
 button.submitButton{
@@ -52,9 +54,9 @@ input:hover,
 input:focus,
 button.submitButton:hover,
 button.submitButton:focus {
-  background-color: #dfd5ca;
+  background-color: #f7f8f1b0;
   outline:none;
-  border:2px #dfd5ca solid;
+  border:2px #f7f8f1b0 solid;
 }
 
 input {
@@ -78,17 +80,21 @@ li {
 }
 
 .appContainer {
-  min-height: 100vh;
+  height: 100vh;
   position:relative;
-}
-
-main {
-  min-height: 85vh;
   display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+  /* border: 2px solid goldenrod; */
+}
+/* 
+main {
+  /* min-height: 86vh; */
+  /* display:flex;
   flex-direction: column;
   justify-content: center;
   align-items:center;
-}
+} */ 
 
 /* NAV MENU STYLING */
 nav {
@@ -104,6 +110,14 @@ nav .wrapper {
 .navButton {
   font-weight: 600;
   padding: 10px;
+  background-color: transparent;
+  transition: 1s;
+}
+
+.navButton:hover,
+.navButton:focus {
+  color: #BCBCA6;
+  background-color: #545152;
 }
 
 .mobileNav {
@@ -114,7 +128,7 @@ nav .wrapper {
   transition: 0.5s;
   z-index: 20;
   top: 5px;
-  right: 3%;
+  right: 4%;
   padding: 20px;
   border: none;
   background-color: transparent;
@@ -191,64 +205,98 @@ nav .wrapper {
   transition: 0.5s;
 }
 
+/* Display Haiku Styling --- */
+.haikuContainer {
+  margin: 40px 0 10px;;
+  min-height: 100px;
+  padding: 40px;
+  background-color: #F7F8F1;
+  border: 3px solid #969680;
+  border-radius: 8px;
+}
+.haikuContainer .haikuLine {
+  position: relative;
+}
+.haikuLine li {
+  margin: 10px 3.6px;
+  font-size: 1.2rem;
+}
+.removeButton, 
+.restartButton {
+  background-color: #BCBCA6;
+  border: 2px solid #969680;
+  border-radius: 2px;
+  color: #3a3638;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.syllablesLeft {
+  font-size: 0.9rem;
+  margin: 10px 20px;
+}
+
+.wordButton {
+  background-color: #6A7061;
+  border: 2px solid #545152;
+  border-radius: 2px;
+  margin: 5px;
+  color: #F7F8F1;
+  letter-spacing: 0.06rem;
+}
+
 /* Home Page Styling */
+.homePage {
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 .initialWordForm{
   display:flex;
   flex-direction: column;
   align-items:center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+  padding: 40px;
+  /* background-color: #6A7061; */
+  background-color: #545152ce;
+  border-radius: 5px;;
 }
 .initialWordForm input{
   margin: 10px 10px 10px 0;
   width: 280px;
 }
 
+.initialWordForm h2 {
+  color: #BCBCA6;
+  /* color: #F7F8F1; */
+  /* color: #CdC4B9; */
+}
+
+.secondaryWarning {
+  color: #BCBCA6;
+  font-style: italic;
+}
+
+.warning {
+  color: #F7F8F1;
+  text-transform: uppercase;
+}
+
 .definition {
   max-width: 850px;
   margin: 0 auto;
 }
-
 .definition span {
   letter-spacing: 5px;
-}
-
-/* Results Page */
-.resultsPage {
-  height: 100%;
-  display:flex;
-  align-items:center;
-}
-
-.haikuFlexContainer {
-  height: 150px;
-}
-
-.haikuLine {
-  position:relative;
-}
-
-.haikuLine li {
-  font-size: 1.6rem;
-  margin: 3px;
-}
-
-.haikuLine button {
-  position:absolute;
-  right: 0;
-  top: 50%;
-  transform:translateY(-50%);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  padding-top: 5px;
-  background-color:#CDC4B9;
-  border: 1px solid #545152;
-  display:block;
 }
 
 /* Styling for completed haikus --- */
 .lineComplete li {
   font-weight: 400;
-  color: #22261e;
+  color: #1e211c;
 }
 
 /* Saved Haiku Page */
@@ -263,17 +311,23 @@ nav .wrapper {
 }
 
 .individualPoem {
-  background: #CDC4B9;
+  color: #CDC4B9;
+  color: #F7F8F1;
+  background-color: #6A7061;
   padding: 20px;
-  margin: 20px 0;
+  margin: 30px 0;
   width: calc((100% / 2) - 30px);
+}
+
+.individualPoem:last-child {
+  margin-bottom: 60px;
 }
 /* Footer */
 
 footer {
-  position:absolute;
+  /* position:absolute;
   bottom: 0;
-  width: 100%;
+  width: 100%; */
   background-color: #545152;
   color: #CDC4B9;
   text-align: center;
@@ -287,6 +341,7 @@ footer p {
 
 footer a{
   color: #CDC4B9;
+  font-weight: bold;
 }
 
 /* MEDIA QUERIES --- */
@@ -317,4 +372,4 @@ footer a{
 /* SAND/LIGHT BROWN: #CDC4B9 */
 /* SAGE GREEN: #BCBCA6 */
 
-/* TESTED --- #BCBCA6 (deeper sage green) is accessible with #F7F8F1 (off-white) text */
+/* TESTED --- #6A7061 (deeper sage green) is accessible with #F7F8F1 (off-white) text */
