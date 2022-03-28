@@ -5,8 +5,7 @@ const HaikuReturn = (props) => {
     return (
         <div className="haikuFlexContainer">
             <ul
-                className="line1 haikuLine"
-                style={props.syllables >= 5 ? { color: "grey" } : { color: "black" }}
+                className={`line1 haikuLine ${props.syllables >= 5 ? "lineComplete" : null }` }
             >
                 {
                     liFromArray(props.haikuArray, 0)
@@ -15,8 +14,7 @@ const HaikuReturn = (props) => {
 
             </ul>
             <ul
-                className="line2 haikuLine"
-                style={props.syllables >= 12 ? { color: "grey" } : { color: "black" }}
+                className={`line2 haikuLine ${props.syllables >= 12 ? "lineComplete" : null}`}
             >
                 {
                     liFromArray(props.haikuArray, 1)
@@ -24,8 +22,7 @@ const HaikuReturn = (props) => {
                 {props.button2 ? props.button2() : null }
             </ul>
             <ul
-                className="line3 haikuLine"
-                style={props.syllables == 17 ? { color: "grey" } : { color: "black" }}
+                className={`line2 haikuLine ${props.syllables == 17 ? "lineComplete" : null}`}
             >
                 {
                     liFromArray(props.haikuArray, 2)
