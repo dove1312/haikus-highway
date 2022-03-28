@@ -79,6 +79,91 @@ nav .wrapper {
   padding: 10px;
 }
 
+.mobileNav {
+  display: none;
+}
+.menuIcon {
+  position: absolute;
+  transition: 0.5s;
+  z-index: 20;
+  top: 5px;
+  right: 3%;
+  padding: 20px;
+  border: none;
+  background-color: transparent;
+}
+.hamburgerMenuIcon {
+  width: 60px;
+  height: 35px;
+  position: relative;
+  margin: 0 auto;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+.hamburgerMenuIcon span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: white;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+.hamburgerMenuIcon span:nth-child(1) {
+  top: 0px;
+}
+.hamburgerMenuIcon span:nth-child(2), 
+.hamburgerMenuIcon span:nth-child(3) {
+    top: 15px;
+}
+.hamburgerMenuIcon span:nth-child(4) {
+    top: 30px;
+}
+.hamburgerMenuIcon.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+.hamburgerMenuIcon.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+.hamburgerMenuIcon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+.hamburgerMenuIcon.open span:nth-child(4) {
+  top: 15px;
+  width: 0%;
+  left: 50%;
+}
+.mainMenu {
+  background: #BCBCA6;
+  position: absolute;
+  z-index: 10;
+  width: 0;
+  height: 0;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  border-radius: 50%;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.mainMenu.open {
+  opacity: 1;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+
 
 
 /* Styling for completed haikus --- */
@@ -90,7 +175,15 @@ nav .wrapper {
 /* MEDIA QUERIES --- */
 
 /* menu will need to switch to mobile menu at ~800px */
+@media (max-width: 800px) {
+  .desktopNav {
+    display: none;
+  }
+  .mobileNav {
+    display: block;
+  }
 
+}
 
 /* PROJECT NOTES --- */
 /* brand colours: */
