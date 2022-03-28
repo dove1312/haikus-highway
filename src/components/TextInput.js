@@ -6,6 +6,7 @@ const TextInput = (props) => {
     const [userInput, setUserInput] = useState("");
     const [syllableCount, setSyllableCount] = useState();
     const [spelling, setSpelling] = useState();
+    const [errorMessage, setErrorMessage] = useState();
 
     useEffect(() => {
         if (userInput) {
@@ -19,6 +20,8 @@ const TextInput = (props) => {
                     setSyllableCount(result.data[0].numSyllables)
                     setSpelling(data[0].word)
                 }
+            }).catch((error) => {
+                setErrorMessage("Sorry, our word database is undergoing maintenance")
             })
         }
     }, [userInput])
@@ -55,19 +58,19 @@ const TextInput = (props) => {
                 <label className='sr-only' htmlFor="input">Enter a word for the haiku:</label>
                 <button className="submitButton" disabled={ disableButton(userInput) }>Submit</button>
             </form>
-            {!userInput && (
-                <p>enter word</p>
-            )}
+            {/* {!userInput && (
+                <p>Within allowed syllable count.</p>
+            )} */}
             {/* count > 2 is test for now, update to 5 later */}
-            {syllableCount > props.allowedSyllables && (
-                <p>too many syllables!!!</p>
-            )}
+            {syllableCount > props.allowedSyllables && userInput ? (
+                <p>Too many syllables!</p>
+            ) : (<p>Within allowed syllable count</p>)}
             {/* !/^[a-z]+$/i.test(userInput) && */}
             {stringDoesNotPass(userInput) && userInput && (
-                <p>no special characters or number or space!!!!!!</p>
+                <p>No special characters, numbers or spaces please!</p>
             )}
             {/* {syllableCount > 5 ? (<p>too many syllables!!!</p>) : (<p>just the right amount of syllables</p>)} */}
-            <p>checking if spellcheck is working: {spelling}</p>
+            {/* <p>checking if spellcheck is working: {spelling}</p> */}
         </>
     )
 }

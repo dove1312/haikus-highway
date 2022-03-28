@@ -124,16 +124,3 @@ const WordGenerator = (props) => {
 }
 
 export default WordGenerator;
-
-
-
-
-
-
-
-
-//create a function to be called inside WordList - when the chosen word is passed up to Word Generator, the state lastWord is updated
-    // const findLastWord = (previousWord)=> {
-    //     setLastWord(previousWord);
-    //     //now need to think about adding in useEffect somehow and still be able to pass the function down - currently updating the last word in state when adding words, but not when REMOVING WORDS - needs a dependency array? 
-    // }
