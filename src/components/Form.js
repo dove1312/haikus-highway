@@ -10,7 +10,7 @@ function Form() {
   }
 
   return (
-    <div>
+    <div className="initialWordForm">
       <h2>Enter a word to get started:</h2>
       <TextInput className="homePage" allowedSyllables="5" customFunction={navigateFunction} />
     </div>
