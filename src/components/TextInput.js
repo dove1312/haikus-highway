@@ -14,8 +14,7 @@ const TextInput = (props) => {
                 url: `https://api.datamuse.com/words?sp=${userInput}&md=s`
             }).then(function (result) {
                 setSpelling("")
-                const { data } = result
-                console.log(data)
+                const { data } = result;
                 if (data[0]) {
                     setSyllableCount(result.data[0].numSyllables)
                     setSpelling(data[0].word)

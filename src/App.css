@@ -63,6 +63,15 @@ li {
   list-style: none;
 }
 
+.appContainer {
+  min-height: 100vh;
+  position:relative;
+}
+
+main {
+  height: 80vh;
+}
+
 /* NAV MENU STYLING */
 nav {
   background-color: #BCBCA6;
@@ -79,12 +88,52 @@ nav .wrapper {
   padding: 10px;
 }
 
-
+/* Home Page Styling */
+.homePage{
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.initialWordForm{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  margin-bottom: 60px;
+}
+.initialWordForm input{
+  margin: 10px 10px 10px 0;
+  width: 280px;
+}
 
 /* Styling for completed haikus --- */
 .lineComplete li {
   font-weight: 400;
   color: #22261e;
+}
+
+/* Saved Haiku Page */
+.savedHaikus h2 {
+  text-align: center;
+  margin:40px 0;
+}
+.haikuList {
+  justify-content: space-between;
+}
+/* Footer */
+
+footer {
+  position:absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #545152;
+  color: #CDC4B9;
+  text-align: center;
+  padding: 5px;
+}
+
+footer a{
+  color: #CDC4B9;
 }
 
 /* MEDIA QUERIES --- */

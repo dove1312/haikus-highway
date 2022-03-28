@@ -23,9 +23,10 @@ const SavedHaikus = () => {
 
     }, [])
 
-    console.log(haikuList);
+    // console.log(haikuList);
 
     return (
+        <main>
             <section className="savedHaikus">
                 <div className='wrapper'>
                     <div className="haikus">
@@ -35,7 +36,7 @@ const SavedHaikus = () => {
                                 haikuList[0]
                                     ? haikuList.map((haiku) => {
                                         return (
-                                            <li key={ haiku.key }>
+                                            <li key={haiku.key}>
                                                 <HaikuReturn haikuArray={haiku.info} />
                                             </li>
                                         )
@@ -46,6 +47,7 @@ const SavedHaikus = () => {
                     </div>
                 </div>
             </section>
+        </main>
 
     )
 }
