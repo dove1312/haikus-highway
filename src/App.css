@@ -41,6 +41,20 @@ h1 {
 input, button.submitButton {
   border: 2px #545152 solid;
   background-color: #CDC4B9;
+  transition: all 0.4s;
+}
+
+button.submitButton{
+  text-transform: uppercase;
+}
+
+input:hover,
+input:focus,
+button.submitButton:hover,
+button.submitButton:focus {
+  background-color: #dfd5ca;
+  outline:none;
+  border:2px #dfd5ca solid;
 }
 
 input {
@@ -191,6 +205,30 @@ nav .wrapper {
   width: 280px;
 }
 
+.definition {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.definition span {
+  letter-spacing: 5px;
+}
+
+/* Results Page */
+.resultsPage {
+  height: 100%;
+  display:flex;
+  align-items:center;
+}
+
+.haikuFlexContainer {
+  height: 150px;
+}
+.haikuLine li {
+  font-size: 1.5rem;
+  margin: 3px;
+}
+
 /* Styling for completed haikus --- */
 .lineComplete li {
   font-weight: 400;
@@ -202,8 +240,17 @@ nav .wrapper {
   text-align: center;
   margin:40px 0;
 }
+
 .haikuList {
   justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.individualPoem {
+  background: #CDC4B9;
+  padding: 20px;
+  margin: 20px 0;
+  width: calc((100% / 2) - 30px);
 }
 /* Footer */
 
@@ -215,6 +262,10 @@ footer {
   color: #CDC4B9;
   text-align: center;
   padding: 5px;
+}
+
+footer p {
+  padding: 2px;
 }
 
 footer a{

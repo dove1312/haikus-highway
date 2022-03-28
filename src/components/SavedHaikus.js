@@ -36,7 +36,7 @@ const SavedHaikus = () => {
                                 haikuList[0]
                                     ? haikuList.map((haiku) => {
                                         return (
-                                            <li key={haiku.key}>
+                                            <li key={haiku.key} className= "individualPoem">
                                                 <HaikuReturn haikuArray={haiku.info} />
                                             </li>
                                         )
