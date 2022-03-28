@@ -185,6 +185,15 @@ nav .wrapper {
 
 }
 
+@media (max-width: 500px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  nav {
+  border-bottom: none;
+}
+}
+
 /* PROJECT NOTES --- */
 /* brand colours: */
 /* DARK GREY: #545152 */

@@ -38,12 +38,12 @@ const NavMenu = () => {
                             <span></span>
                         </div>
                     </button>
-                    <ul className={`mainMenu ${openMenu ? "open" : null}`}>
+                    <ul onClick={onClick} className={`mainMenu ${openMenu ? "open" : null}`}>
                         <li className='haikuGenerator'>
-                            <Link className='navLink' to="/haiku">Write A Haiku</Link>
+                            <Link onClick={ onClick } className='navLink' to="/haiku">Write A Haiku</Link>
                         </li>
                         <li>
-                            <Link className='navLink' to="/savedHaikus">Saved Haikus</Link>
+                            <Link onClick={onClick} className='navLink' to="/savedHaikus">Saved Haikus</Link>
                         </li>
                     </ul>
                 </div>
