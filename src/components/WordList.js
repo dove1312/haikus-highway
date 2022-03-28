@@ -115,7 +115,7 @@ const WordList = (props) => {
                         filteredWordList.map((word) => {
                             return (
                                 <li key={word.score}>
-                                    <button onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
+                                    <button className="wordButton" onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
                                 </li>
                             )
                         })

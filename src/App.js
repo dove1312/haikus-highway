@@ -1,5 +1,5 @@
 import './App.css';
-import {Link, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 //may also need to add in Outlet as we progress
 import NavMenu from './components/NavMenu';
 import ResultsPage from './components/ResultsPage';

@@ -87,7 +87,7 @@ nav .wrapper {
   transition: 0.5s;
   z-index: 20;
   top: 5px;
-  right: 3%;
+  right: 4%;
   padding: 20px;
   border: none;
   background-color: transparent;
@@ -164,12 +164,52 @@ nav .wrapper {
   transition: 0.5s;
 }
 
+/* Display Haiku Styling --- */
+.haikuContainer {
+  margin: 40px 0 10px;;
+  min-height: 100px;
+  padding: 40px;
+  background-color: #F7F8F1;
+  border: 3px solid #969680;
+  border-radius: 8px;
+}
+.haikuContainer .haikuLine {
+  position: relative;
+}
+.haikuLine li {
+  margin: 10px 3.6px;
+  font-size: 1.2rem;
+}
+.removeButton, 
+.restartButton {
+  background-color: #BCBCA6;
+  border: 2px solid #969680;
+  border-radius: 2px;
+  color: #3a3638;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 
+.syllablesLeft {
+  font-size: 0.9rem;
+  margin: 10px 20px;
+}
+
+.wordButton {
+  background-color: #6A7061;
+  border: 2px solid #545152;
+  border-radius: 2px;
+  margin: 5px;
+  color: #F7F8F1;
+  letter-spacing: 0.06rem;
+}
 
 /* Styling for completed haikus --- */
 .lineComplete li {
   font-weight: 400;
-  color: #22261e;
+  color: #1e211c;
 }
 
 /* MEDIA QUERIES --- */
@@ -200,4 +240,4 @@ nav .wrapper {
 /* SAND/LIGHT BROWN: #CDC4B9 */
 /* SAGE GREEN: #BCBCA6 */
 
-/* TESTED --- #BCBCA6 (deeper sage green) is accessible with #F7F8F1 (off-white) text */
+/* TESTED --- #6A7061 (deeper sage green) is accessible with #F7F8F1 (off-white) text */
