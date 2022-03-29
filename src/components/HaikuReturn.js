@@ -1,9 +1,12 @@
 import liFromArray from '../reusableLogic/liFromArray';
+import branch1 from '../assets/branch1.png'
+import branch2 from '../assets/branch2.png'
 
 const HaikuReturn = (props) => {
 
     return (
         <div className="haikuFlexContainer">
+            <img src={branch1} alt="" className="branch topBranch"/>
             <ul
                 className={`line1 haikuLine ${props.syllables >= 5 ? "lineComplete" : null }` }
             >
@@ -29,6 +32,7 @@ const HaikuReturn = (props) => {
                 }
                 {props.button3 ? props.button3() : null }
             </ul>
+            <img src={branch2} alt="" className="branch bottomBranch"/>
         </div>
     )
 

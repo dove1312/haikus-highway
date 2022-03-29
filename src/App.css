@@ -8,10 +8,10 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
-/* Import Fonts */
+/***** Import Fonts *****/
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Merienda+One&display=swap');
 
-/* Global Styles */
+/***** Global Styles *****/
 html {
   font-size: 125%;
   color: #545152;
@@ -40,7 +40,6 @@ h1 {
 
 input, button.submitButton {
   border: 2px #545152 solid;
-  /* background-color: #CDC4B9; */
   background-color: #F7F8F1;
   color: #545152;
   transition: all 0.6s;
@@ -85,18 +84,12 @@ li {
   display:flex;
   flex-direction:column;
   justify-content: space-between;
-  /* border: 2px solid goldenrod; */
 }
-/* 
-main {
-  /* min-height: 86vh; */
-  /* display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:center;
-} */ 
+/* main{
+  position:relative;
+} */
 
-/* NAV MENU STYLING */
+/***** NAV MENU STYLING *****/
 nav {
   background-color: #BCBCA6;
   border-bottom: 2px solid #969680;
@@ -205,7 +198,7 @@ nav .wrapper {
   transition: 0.5s;
 }
 
-/* Display Haiku Styling --- */
+/***** Display Haiku Styling --- *****/
 .haikuContainer {
   margin: 40px 0 10px;;
   min-height: 100px;
@@ -247,36 +240,49 @@ nav .wrapper {
   letter-spacing: 0.06rem;
 }
 
-/* Home Page Styling */
+/***** Home Page Styling *****/
 .homePage {
   height: 100%;
   display:flex;
   justify-content: center;
   align-items: center;
 }
+
+.imgContainer,
+.imgContainer2 {
+  position:absolute;
+  height: 87%;  
+  right:-20px;
+  top: 80px;
+}
+.imgContainer2{
+  left: -30px;
+}
+.imgContainer img,
+.imgContainer2 img {
+  object-fit: contain;
+  max-height: 100%;
+  opacity: 0.4;
+
+}
 .initialWordForm{
   display:flex;
   flex-direction: column;
   align-items:center;
-  margin-bottom: 50px;
-  padding: 40px;
-  /* background-color: #6A7061; */
-  background-color: #545152ce;
-  border-radius: 5px;;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  max-width: 460px;
+  position:relative;
+  z-index:20;
+  background-color: #bcbca67d;
+  border-radius: 5px;
 }
 .initialWordForm input{
   margin: 10px 10px 10px 0;
   width: 265px;
 }
 
-.initialWordForm h2 {
-  color: #BCBCA6;
-  /* color: #F7F8F1; */
-  /* color: #CdC4B9; */
-}
-
 .secondaryWarning {
-  color: #BCBCA6;
   font-style: italic;
 }
 
@@ -286,8 +292,13 @@ nav .wrapper {
 }
 
 .definition {
-  max-width: 850px;
+  max-width: 800px;
   margin: 0 auto;
+  padding: 10px;
+  position:relative;
+  z-index:20;
+  color: #545152;
+  background-color: #bcbca6ce;
 }
 .definition span {
   letter-spacing: 5px;
@@ -299,7 +310,7 @@ nav .wrapper {
   color: #1e211c;
 }
 
-/* Saved Haiku Page */
+/***** Saved Haiku Styling *****/
 .savedHaikus h2 {
   text-align: center;
   margin:40px 0;
@@ -311,28 +322,39 @@ nav .wrapper {
 }
 
 .individualPoem {
+  position:relative;
   color: #CDC4B9;
   color: #F7F8F1;
-  background-color: #6A7061;
-  padding: 20px;
+  background-color: #6a70615e;
+  padding: 100px 20px;
   margin: 30px 0;
   width: calc((100% / 2) - 30px);
 }
-
-.individualPoem:last-child {
-  margin-bottom: 60px;
+.wordBox .branch {
+  display:none;
 }
-/* Footer */
+.branch {
+  position:absolute;
+  width: 35%;
+}
+.topBranch {
+  top: 5px;
+  right: 5px;
+}
+.bottomBranch{
+  bottom: 5px; 
+  left: 5px;
+}
+
+/***** Footer *****/
 
 footer {
-  /* position:absolute;
-  bottom: 0;
-  width: 100%; */
   background-color: #545152;
   color: #CDC4B9;
   text-align: center;
   padding: 5px;
   margin-top: 10px;
+  z-index:20;
 }
 
 footer p {
@@ -344,8 +366,17 @@ footer a{
   font-weight: bold;
 }
 
-/* MEDIA QUERIES --- */
+/**** MEDIA QUERIES --- *****/
 
+@media(max-width: 900px){
+  .individualPoem {
+    width: 100%;
+    padding: 80px 20px;
+  }
+  .branch {
+    width: 30%;
+  }
+}
 /* menu will need to switch to mobile menu at ~800px */
 @media (max-width: 800px) {
   .desktopNav {
@@ -365,6 +396,12 @@ footer a{
   .haikuContainer {
     padding: 40px 40px 60px;
   }
+  .imgContainer{
+    right: -80px;
+  }
+  .imgContainer2 {
+    left: -80px;
+  }
 }
 
 @media (max-width: 710px) {
@@ -383,6 +420,18 @@ footer a{
   }
   footer {
     font-size: 0.9rem;
+  }
+}
+
+@media(max-width: 600px){
+  .imgContainer2 {
+    display:none;
+  }
+  .initialWordForm {
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 5px;
+    max-width: 400px;
   }
 }
 
@@ -410,17 +459,25 @@ footer a{
   }
   form.homePage {
     flex-direction:column;
-  }
-  form {
     width: 100%;
+  }
+  .initialWordForm {
+    background-color:transparent;
   }
   .initialWordForm input {
-    width: 100%;
+    width: 325px;
     margin-top: 20px;
+    margin-right: 0;
   }
   button.submitButton {
     margin-bottom: 20px;
     width: 50%;
+  }
+  .imgContainer {
+    opacity: 0.4;
+  }
+  .individualPoem li{
+    font-size: 1rem;
   }
 }
 
@@ -446,6 +503,18 @@ footer a{
   }
   .wordListContainer {
     margin: 10px;
+  }
+  .initialWordForm {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .initialWordForm input {
+    width: 100%;
+    
+  }
+  .individualPoem {
+    width: 95%;
+    margin: 30px auto;
   }
 }
 

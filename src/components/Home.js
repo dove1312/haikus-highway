@@ -1,8 +1,16 @@
 import Form from './Form.js';
+import tree from '../assets/tree.png';
+import tree2 from '../assets/tree2.png';
 
 function Home() {
   return (
     <main>
+      <div className="imgContainer">
+        <img src={tree} alt="tree" className="tree" />
+      </div>
+      <div className="imgContainer2">
+        <img src={tree2} alt="tree" className="tree" />
+      </div>
       <section className='homePage'>
         <div className="wrapper">
           <Form />
