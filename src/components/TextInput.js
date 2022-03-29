@@ -6,6 +6,8 @@ const TextInput = (props) => {
     const [userInput, setUserInput] = useState("");
     const [syllableCount, setSyllableCount] = useState();
     const [spelling, setSpelling] = useState();
+    const [errorMessage, setErrorMessage] = useState();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (userInput) {
@@ -13,14 +15,17 @@ const TextInput = (props) => {
                 url: `https://api.datamuse.com/words?sp=${userInput}&md=s`
             }).then(function (result) {
                 setSpelling("")
-                const { data } = result
-                console.log(data)
+                const { data } = result;
                 if (data[0]) {
                     setSyllableCount(result.data[0].numSyllables)
                     setSpelling(data[0].word)
                 }
+                setLoading(false);
+            }).catch((error) => {
+                setErrorMessage("Sorry, our word database is undergoing maintenance")
+                setLoading(false);
             })
-        }
+        } 
     }, [userInput])
 
     const disableButton = (input) => {
@@ -37,7 +42,8 @@ const TextInput = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.customFunction( userInput )
+        props.customFunction( userInput );
+        setLoading(true);
     }
 
     const stringDoesNotPass = (string) => {
@@ -55,19 +61,26 @@ const TextInput = (props) => {
                 <label className='sr-only' htmlFor="input">Enter a word for the haiku:</label>
                 <button className="submitButton" disabled={ disableButton(userInput) }>Submit</button>
             </form>
-            {!userInput && (
-                <p>enter word</p>
+
+            {(!spelling) ? 
+                <p>{errorMessage}</p> : null
+            }
+
+            {loading ? (
+                <p>Retrieving words for your haiku</p>
+            ) : (
+                null
             )}
-            {/* count > 2 is test for now, update to 5 later */}
-            {syllableCount > props.allowedSyllables && (
-                <p>too many syllables!!!</p>
+
+            {syllableCount > props.allowedSyllables && userInput ? (
+                <p className='warning'>Too many syllables!</p>
+            ) : (
+                <p className='secondaryWarning'>Within allowed syllable count</p>
             )}
-            {/* !/^[a-z]+$/i.test(userInput) && */}
+
             {stringDoesNotPass(userInput) && userInput && (
-                <p>no special characters or number or space!!!!!!</p>
+                <p className='warning'>No special characters, numbers or spaces please!</p>
             )}
-            {/* {syllableCount > 5 ? (<p>too many syllables!!!</p>) : (<p>just the right amount of syllables</p>)} */}
-            <p>checking if spellcheck is working: {spelling}</p>
         </>
     )
 }

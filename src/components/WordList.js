@@ -16,7 +16,7 @@ const WordList = (props) => {
     const regex = /^[a-zA-Z]+$/;
 
 
-    console.log(props.newWord);
+    // console.log(props.newWord);
     // establish initial word from user word handed down via props:
     if (props.initialWord) {
         // ensure initialWord only updates ONCE:
@@ -115,7 +115,7 @@ const WordList = (props) => {
                         filteredWordList.map((word) => {
                             return (
                                 <li key={word.score}>
-                                    <button onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
+                                    <button className="wordButton" onClick={function () { handleClick(word.word, word.numSyllables, props.currentSyllables) }} >{word.word}</button>
                                 </li>
                             )
                         })

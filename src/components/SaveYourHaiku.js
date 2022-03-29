@@ -1,8 +1,25 @@
-const SaveYourHaiku = ()=>{
-     //functionality for calling firebase included here
+import firebase from './firebase';
+import { getDatabase, ref, push } from 'firebase/database';
+import { useState } from 'react';
+
+const SaveYourHaiku = (props)=>{
+
+     const [saveButton, setSaveButton] = useState("Save Your Haiku");
+     const database = getDatabase(firebase);
+     const dbRef = ref(database);
+     
+
+     const handleClick = ()=> {
+          const firebaseHaiku = push(dbRef, props.currentHaiku);
+          setSaveButton("Saved");
+     }
+
+
+
      return(
           <div className="buttonContainer">
-               <button>Save Your Haiku</button>
+               <button
+               onClick= {handleClick} className="saveButton">{saveButton}</button>
           </div>
      )     
 }

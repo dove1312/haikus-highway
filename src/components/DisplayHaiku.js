@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import HaikuReturn from './HaikuReturn';
 import { Link } from 'react-router-dom';
 
@@ -21,14 +20,16 @@ const DisplayHaiku = (props) => {
         return (
             <>
             <button
+                className="removeButton"
                 style={syllables <= 5 && line1.length > 1 ? { display: "block" } : { display: "none" }}
                 onClick={() => { handleClick(line1) }} >
-                REMOVE
+                Back
             </button>
             <Link to="/">
                     <button
-                        style={line1.length == 1 ? { display: "block" } : { display: "none" }}>
-                        Start Again
+                        className="restartButton" 
+                        style={line1.length == 1 && syllables <= 5 ? { display: "block" } : { display: "none" }}>
+                        Start Over
                     </button>
             </Link>
             
@@ -39,9 +40,10 @@ const DisplayHaiku = (props) => {
     const button2 = () => {
         return (
             <button
+                className="removeButton"
                 style={syllables > 5 && syllables <= 12 ? { display: "block" } : { display: "none" }}
                 onClick={() => { handleClick(line2) }} >
-                REMOVE
+                Back
             </button>
         )
     }
@@ -49,34 +51,20 @@ const DisplayHaiku = (props) => {
     const button3 = () => {
         return (
             <button
+                className="removeButton"
                 style={syllables > 12 ? { display: "block" } : { display: "none" }}
                 onClick={() => { handleClick(line3) }}>
-                    REMOVE
+                    Back
             </button>
         )
     }
 
     return(
-        
-        <HaikuReturn syllables={ syllables } haikuArray={ haikuLines } button1={ button1 } button2={ button2 } button3={ button3 } />
+        <div className="haikuContainer">
+            <HaikuReturn syllables={syllables} haikuArray={haikuLines} button1={button1} button2={button2} button3={button3} />
+        </div>
     )
 }
 
 export default DisplayHaiku
-
-//create a button that will display for each of the lines
-    //that button must recognize the last object of the array (haikuLine) and .pop() to remove 
-    //create a turnery that is disappears when the syllables is reached 
-    //need to trigger a rerender of the <UL> to display uploaded function
-    //need to trigger a change of currentSyllables
-
-    //when that button is clicked, we may need to trigger another API call based on the value of object.word 
-
-
-
-    // const wordToRemove = event.target.previousElementSibling.outerText;
-        // line1.find(()=>{ 
-        //     console.log(wordToRemove)
-        //     line1.pop(wordToRemove);
-        // })
 

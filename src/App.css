@@ -8,10 +8,15 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
-/* Global Styles */
+/***** Import Fonts *****/
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Merienda+One&display=swap');
+
+/***** Global Styles *****/
 html {
   font-size: 125%;
+  color: #545152;
   background-color: #BCBCA6;
+  font-family: 'Barlow', 'sans-serif';
 }
 body, h1, h2, h3, h4, h5, li, ul, p, button {
   margin: 0;
@@ -25,26 +30,37 @@ body, h1, h2, h3, h4, h5, li, ul, p, button {
 li {
   list-style: none;
 }
-
-
-/* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Merienda+One&display=swap');
-
-.appContainer {
-  text-align: center;
+a {
+  text-decoration: none;
+  color: #545152;
 }
-
 h1 {
   font-family: 'Merienda One', 'cursive';
 }
 
-h2, p, li {
-  font-family: 'Barlow', 'sans-serif';
+input, 
+button.submitButton,
+button.saveButton {
+  border: 2px #545152 solid;
+  background-color: #F7F8F1;
+  color: #545152;
+  transition: all 0.6s;
 }
 
-input, button {
-  border: 2px #545152 solid;
-  background-color: #CDC4B9;
+button.submitButton,
+button.saveButton{
+  text-transform: uppercase;
+}
+
+input:hover,
+input:focus,
+button.submitButton:hover,
+button.submitButton:focus,
+button.saveButton:hover,
+button.saveButton:focus {
+  background-color: #f7f8f1b0;
+  outline:none;
+  border:2px #f7f8f1b0 solid;
 }
 
 input {
@@ -67,5 +83,480 @@ li {
   list-style: none;
 }
 
+main{
+  position:relative;
+  height: calc(100vh - 140px);
+  overflow: hidden;
+}
+main.haikusPage {
+  height: auto;
+}
 
+/* background brach images */
+.imgContainer,
+.imgContainer2 {
+  position:absolute;
+  height: 100%;  
+  right: -40px;
+  top: 0px;
+}
+.imgContainer2{
+  left: -40px;
+}
 
+.imgContainer img{
+  object-position:right;
+}
+.imgContainer img,
+.imgContainer2 img {
+  /* object-fit: contain; */
+  height: 100%;
+  opacity: 0.2;
+}
+
+/***** NAV MENU STYLING *****/
+nav {
+  background-color: #BCBCA6;
+  border-bottom: 2px solid #969680;
+}
+nav .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+.navButton {
+  font-weight: 600;
+  padding: 10px;
+  background-color: transparent;
+  transition: 1s;
+}
+
+.navButton:hover,
+.navButton:focus {
+  color: #BCBCA6;
+  background-color: #545152;
+}
+
+.mobileNav {
+  display: none;
+}
+.menuIcon {
+  position: absolute;
+  transition: 0.5s;
+  z-index: 30;
+  top: 5px;
+  right: 4%;
+  padding: 20px;
+  border: none;
+  background-color: transparent;
+}
+.hamburgerMenuIcon {
+  width: 60px;
+  height: 35px;
+  position: relative;
+  margin: 0 auto;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+.hamburgerMenuIcon span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: #545152;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+.hamburgerMenuIcon span:nth-child(1) {
+  top: 0px;
+}
+.hamburgerMenuIcon span:nth-child(2), 
+.hamburgerMenuIcon span:nth-child(3) {
+    top: 15px;
+}
+.hamburgerMenuIcon span:nth-child(4) {
+    top: 30px;
+}
+.hamburgerMenuIcon.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+.hamburgerMenuIcon.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+.hamburgerMenuIcon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+.hamburgerMenuIcon.open span:nth-child(4) {
+  top: 15px;
+  width: 0%;
+  left: 50%;
+}
+.mainMenu {
+  background: #BCBCA6;
+  position: absolute;
+  z-index: 20;
+  width: 0;
+  height: 0;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  border-radius: 50%;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.mainMenu.open {
+  opacity: 1;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+
+/***** Display Haiku Styling --- *****/
+.wordBox{
+  padding:40px;
+}
+.haikuContainer {
+  margin: 0 0 10px;;
+  min-height: 100px;
+  padding: 40px;
+  background-color: #F7F8F1;
+  border: 2px solid #969680;
+  border-radius: 5px;
+}
+.haikuContainer .haikuLine {
+  position: relative;
+}
+.haikuLine li {
+  margin: 10px 3.6px;
+  font-size: 1.2rem;
+}
+.removeButton, 
+.restartButton {
+  background-color: #BCBCA6;
+  border: 2px solid #969680;
+  border-radius: 2px;
+  color: #3a3638;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.removeButton:hover,
+.removeButton:focus,
+.restartButton:hover,
+.restartButton:focus {
+  background-color: #969680;
+  border: 2px solid #6A7061;
+}
+
+.syllablesLeft {
+  font-size: 0.9rem;
+  margin: 10px 20px;
+  color: #292526;
+}
+
+.wordButton {
+  position: relative;
+  background-color: #6A7061;
+  border: 2px solid #545152;
+  border-radius: 2px;
+  margin: 5px;
+  color: #F7F8F1;
+  letter-spacing: 0.06rem;
+  z-index: 20;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.wordButton:hover,
+.wordButton:focus {
+  background-color: #545152;
+}
+
+.saveButton {
+  z-index:20;
+  position:relative;
+
+}
+
+/***** Home Page Styling *****/
+.homePage {
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.initialWordForm{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  max-width: 460px;
+  position:relative;
+  z-index:10;
+  background-color: #bcbca67d;
+  border-radius: 5px;
+}
+.initialWordForm input{
+  margin: 10px 10px 10px 0;
+  width: 265px;
+}
+
+.secondaryWarning {
+  font-style: italic;
+}
+
+.warning {
+  color: #F7F8F1;
+  text-transform: uppercase;
+}
+
+.definition {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+  position:relative;
+  z-index:10;
+  color: #545152;
+  background-color: #bcbca6ce;
+}
+.definition span {
+  letter-spacing: 5px;
+}
+
+/* Styling for completed haikus --- */
+.lineComplete li {
+  font-weight: 400;
+  color: #1e211c;
+}
+
+/***** Saved Haiku Styling *****/
+.savedHaikus h2 {
+  text-align: center;
+  margin:40px 0;
+}
+
+.haikuList {
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.individualPoem {
+  position:relative;
+  color: #CDC4B9;
+  color: #F7F8F1;
+  background-color: #6a70615e;
+  padding: 100px 20px;
+  margin: 30px 0;
+  width: calc((100% / 2) - 30px);
+}
+.wordBox .branch {
+  display:none;
+}
+.branch {
+  position:absolute;
+  width: 35%;
+}
+.topBranch {
+  top: 5px;
+  right: 5px;
+}
+.bottomBranch{
+  bottom: 5px; 
+  left: 5px;
+}
+
+/***** Footer *****/
+
+footer {
+  background-color: #545152;
+  color: #CDC4B9;
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+  z-index:20;
+}
+
+footer p {
+  padding: 2px 0;
+}
+
+footer a{
+  color: #CDC4B9;
+  font-weight: bold;
+}
+
+/**** MEDIA QUERIES --- *****/
+
+@media(max-width: 900px){
+  .individualPoem {
+    width: 100%;
+    padding: 80px 20px;
+  }
+  .branch {
+    width: 30%;
+  }
+  .imgContainer{
+    right: -100px;
+  }
+  .imgContainer2 {
+    left: -100px;
+  }
+}
+/* menu will need to switch to mobile menu at ~800px */
+@media (max-width: 800px) {
+  .desktopNav {
+    display: none;
+  }
+  .mobileNav {
+    display: block;
+  }
+  .removeButton,
+  .restartButton {
+    bottom: -40px;
+    right: -20px;
+    background-color: #969680;
+    border: 2px solid #7e7e6c;
+    border-radius: 3px;
+  }
+  .haikuContainer {
+    padding: 40px 40px 60px;
+  }
+  .imgContainer2 {
+    display:none;
+  }
+  .imgContainer {
+    right: -40px;
+  }
+  .initialWordForm {
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 5px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 710px) {
+  .wrapper {
+    width: 90%;
+  }
+  .menuIcon {
+    right: 3%;
+  }
+  .haikuContainer {
+    padding: 40px 20px 60px;
+  }
+  .removeButton,
+  .restartButton {
+    right: 0px;
+  }
+  footer {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  nav {
+  border-bottom: none;  
+  }
+  .menuIcon {
+    right: 0;
+  }
+  .hamburgerMenuIcon {
+    width: 45px;
+  }
+  .haikuContainer {
+    margin: 0;
+  }
+  .haikuLine li {
+    font-size: 1.1rem;
+  }
+  .initialWordForm h2 {
+    font-size: 1.3rem;
+  }
+  form.homePage {
+    flex-direction:column;
+    width: 100%;
+  }
+  .initialWordForm {
+    background-color:transparent;
+  }
+  .initialWordForm input {
+    width: 325px;
+    margin-top: 20px;
+    margin-right: 0;
+  }
+  button.submitButton {
+    margin-bottom: 20px;
+    width: 50%;
+  }
+  .imgContainer {
+    opacity: 0.4;
+  }
+  .individualPoem li{
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper {
+    width: 100%;
+  }
+  h1 {
+    padding-left: 5%;
+  }
+  .haikuContainer {
+    padding: 10px 10px 40px;
+  }
+  .haikuLine li {
+    margin: 10px 3px;
+  }
+  .removeButton,
+  .restartButton {
+    bottom: -30px;
+  }
+  .syllablesLeft {
+    font-size: 0.8rem;
+  }
+  .wordListContainer {
+    margin: 10px;
+  }
+  .initialWordForm {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .initialWordForm input {
+    width: 100%;
+    
+  }
+  .individualPoem {
+    width: 95%;
+    margin: 30px auto;
+  }
+}
+
+/* PROJECT NOTES --- */
+/* brand colours: */
+/* DARK GREY: #545152 */
+/* SAND/LIGHT BROWN: #CDC4B9 */
+/* SAGE GREEN: #BCBCA6 */
+
+/* TESTED --- #6A7061 (deeper sage green) is accessible with #F7F8F1 (off-white) text */
