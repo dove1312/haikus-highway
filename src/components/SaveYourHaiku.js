@@ -19,7 +19,7 @@ const SaveYourHaiku = (props)=>{
      return(
           <div className="buttonContainer">
                <button
-               onClick= {handleClick}>{saveButton}</button>
+               onClick= {handleClick} className="saveButton">{saveButton}</button>
           </div>
      )     
 }

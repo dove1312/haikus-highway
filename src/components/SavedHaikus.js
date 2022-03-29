@@ -25,7 +25,7 @@ const SavedHaikus = () => {
     }, [])
 
     return (
-        <main>
+        <main className="haikusPage">
             <section className="savedHaikus">
                 <div className='wrapper'>
                     <div className="haikus">

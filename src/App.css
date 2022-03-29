@@ -38,21 +38,26 @@ h1 {
   font-family: 'Merienda One', 'cursive';
 }
 
-input, button.submitButton {
+input, 
+button.submitButton,
+button.saveButton {
   border: 2px #545152 solid;
   background-color: #F7F8F1;
   color: #545152;
   transition: all 0.6s;
 }
 
-button.submitButton{
+button.submitButton,
+button.saveButton{
   text-transform: uppercase;
 }
 
 input:hover,
 input:focus,
 button.submitButton:hover,
-button.submitButton:focus {
+button.submitButton:focus,
+button.saveButton:hover,
+button.saveButton:focus {
   background-color: #f7f8f1b0;
   outline:none;
   border:2px #f7f8f1b0 solid;
@@ -78,12 +83,42 @@ li {
   list-style: none;
 }
 
-main{
-  width: 100%;
-  min-height: calc( 100vh - 150px);
-  /* height: 100vh; */
-  overflow:hidden;
+/* .appContainer {
+  height: 100vh;
   position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+} */
+main{
+  position:relative;
+  height: calc(100vh - 140px);
+  overflow: hidden;
+}
+main.haikusPage {
+  height: auto;
+}
+
+/* background brach images */
+.imgContainer,
+.imgContainer2 {
+  position:absolute;
+  height: 100%;  
+  right: -40px;
+  top: 0px;
+}
+.imgContainer2{
+  left: -40px;
+}
+
+.imgContainer img{
+  object-position:right;
+}
+.imgContainer img,
+.imgContainer2 img {
+  /* object-fit: contain; */
+  height: 100%;
+  opacity: 0.2;
 }
 
 /***** NAV MENU STYLING *****/
@@ -258,6 +293,12 @@ nav .wrapper {
   background-color: #545152;
 }
 
+.saveButton {
+  z-index:20;
+  position:relative;
+
+}
+
 /***** Home Page Styling *****/
 .homePage {
   height: 100%;
@@ -266,26 +307,6 @@ nav .wrapper {
   align-items: center;
 }
 
-.imgContainer,
-.imgContainer2 {
-  position:absolute;
-  height: 100%;  
-  right:-70px;
-}
-.imgContainer2{
-  left: -30px;
-}
-
-.imgContainer img{
-  object-position:right;
-}
-.imgContainer img,
-.imgContainer2 img {
-  /* object-fit: contain; */
-  height: 100%;
-  opacity: 0.2;
-
-}
 .initialWordForm{
   display:flex;
   flex-direction: column;
@@ -426,6 +447,9 @@ footer a{
   .imgContainer2 {
     display:none;
   }
+  .imgContainer {
+    right: -40px;
+  }
   .initialWordForm {
     margin-left: 0;
     padding-left: 0;
@@ -493,7 +517,6 @@ footer a{
   }
   .imgContainer {
     opacity: 0.4;
-    right: -60px;
   }
   .individualPoem li{
     font-size: 1rem;
