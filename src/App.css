@@ -83,13 +83,6 @@ li {
   list-style: none;
 }
 
-/* .appContainer {
-  height: 100vh;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  justify-content: space-between;
-} */
 main{
   position:relative;
   height: calc(100vh - 140px);

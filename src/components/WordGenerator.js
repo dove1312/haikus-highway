@@ -27,7 +27,6 @@ const WordGenerator = (props) => {
             let placeholder = currentHaiku;
             placeholder[0].push({ word: wordParam, key: idParam, syllables: syllablesParam });
             setCurrentHaiku(placeholder);
-            console.log(currentHaiku);
         } else if (currentSyllables < 12 && currentSyllables >= 5) {
             let placeholder = currentHaiku;
             placeholder[1].push({ word: wordParam, key: idParam, syllables: syllablesParam });
@@ -68,7 +67,6 @@ const WordGenerator = (props) => {
             for (let i = 0; i < array.length; i++) {
                 const syllables = array[i].syllables;
                 sum += syllables
-                // console.log(syllables, sum);
             }
             // console.log(`the sum is ${sum}`);
             setCurrentSyllables(sum);
