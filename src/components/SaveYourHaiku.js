@@ -3,12 +3,15 @@ import { getDatabase, ref, push } from 'firebase/database';
 import { useState } from 'react';
 
 const SaveYourHaiku = (props)=>{
+
+     const [saveButton, setSaveButton] = useState("Save Your Haiku");
      const database = getDatabase(firebase);
      const dbRef = ref(database);
      
 
      const handleClick = ()=> {
           const firebaseHaiku = push(dbRef, props.currentHaiku);
+          setSaveButton("Saved");
      }
 
 
@@ -16,7 +19,7 @@ const SaveYourHaiku = (props)=>{
      return(
           <div className="buttonContainer">
                <button
-               onClick= {handleClick}>Save Your Haiku</button>
+               onClick= {handleClick}>{saveButton}</button>
           </div>
      )     
 }
