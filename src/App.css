@@ -78,16 +78,21 @@ li {
   list-style: none;
 }
 
-.appContainer {
+/* .appContainer {
   height: 100vh;
   position:relative;
   display:flex;
   flex-direction:column;
   justify-content: space-between;
-}
-/* main{
-  position:relative;
 } */
+main{
+  position:relative;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}
+main.haikusPage {
+  height: auto;
+}
 
 /***** NAV MENU STYLING *****/
 nav {
@@ -269,9 +274,9 @@ nav .wrapper {
 .imgContainer,
 .imgContainer2 {
   position:absolute;
-  height: 87%;  
+  height: 100%;  
   right: 0px;
-  top: 80px;
+  top: 0px;
 }
 .imgContainer2{
   left: -30px;
