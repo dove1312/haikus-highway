@@ -4,7 +4,7 @@ import tree2 from '../assets/tree2.png';
 
 function Home() {
   return (
-    <main>
+    <main className="home">
       <div className="imgContainer">
         <img src={tree} alt="tree" className="tree" />
       </div>
