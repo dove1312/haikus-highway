@@ -204,8 +204,8 @@ nav .wrapper {
   min-height: 100px;
   padding: 40px;
   background-color: #F7F8F1;
-  border: 3px solid #969680;
-  border-radius: 8px;
+  border: 2px solid #969680;
+  border-radius: 5px;
 }
 .haikuContainer .haikuLine {
   position: relative;
@@ -224,20 +224,38 @@ nav .wrapper {
   position: absolute;
   bottom: 0;
   right: 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.removeButton:hover,
+.removeButton:focus,
+.restartButton:hover,
+.restartButton:focus {
+  background-color: #969680;
+  border: 2px solid #6A7061;
 }
 
 .syllablesLeft {
   font-size: 0.9rem;
   margin: 10px 20px;
+  color: #292526;
 }
 
 .wordButton {
+  position: relative;
   background-color: #6A7061;
   border: 2px solid #545152;
   border-radius: 2px;
   margin: 5px;
   color: #F7F8F1;
   letter-spacing: 0.06rem;
+  z-index: 20;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.wordButton:hover,
+.wordButton:focus {
+  background-color: #545152;
 }
 
 /***** Home Page Styling *****/
@@ -262,7 +280,7 @@ nav .wrapper {
 .imgContainer2 img {
   object-fit: contain;
   max-height: 100%;
-  opacity: 0.4;
+  opacity: 0.2;
 
 }
 .initialWordForm{
