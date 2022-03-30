@@ -109,7 +109,6 @@ main.haikusPage {
 }
 .imgContainer img,
 .imgContainer2 img {
-  /* object-fit: contain; */
   height: 100%;
   opacity: 0.2;
 }

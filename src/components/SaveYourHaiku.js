@@ -10,7 +10,7 @@ const SaveYourHaiku = (props)=>{
      
 
      const handleClick = ()=> {
-          const firebaseHaiku = push(dbRef, props.currentHaiku);
+          push(dbRef, props.currentHaiku);
           setSaveButton("Saved");
      }
 
